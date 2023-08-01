@@ -42,7 +42,7 @@ function App() {
 
   const randomPush = useRef([])
 
-  //const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   
     useEffect(() => {
       const updateScreenSize = () => {
@@ -199,7 +199,7 @@ useEffect(() => {
   return () => {
       window.removeEventListener('load', startAnimation);
   };
-}, [animate, baseCircles]);
+}, []);
 
   return (
     <div className='app-container'>
