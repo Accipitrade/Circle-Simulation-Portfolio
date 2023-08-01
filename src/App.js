@@ -174,7 +174,7 @@ function App() {
       randomPush.current = '';
       animationFrameID.current = requestAnimationFrame(animate);
     };
-  });
+  }, []);
 
 
 useEffect(() => {
@@ -199,7 +199,7 @@ useEffect(() => {
   return () => {
       window.removeEventListener('load', startAnimation);
   };
-}, []);
+}, [animate, baseCircles]);
 
   return (
     <div className='app-container'>
