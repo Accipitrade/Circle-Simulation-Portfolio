@@ -1,0 +1,35 @@
+@keyframes colorChange {
+    0% {background-color: hsl(0, 100%, 50%);}      /* Red */
+    20% {background-color: hsl(60, 100%, 50%);}    /* Orange */
+    40% {background-color: hsl(120, 100%, 50%);}   /* Yellow */
+    60% {background-color: hsl(180, 100%, 50%);}   /* Green */
+    70% {background-color: hsl(240, 100%, 50%);}   /* Blue */
+    90% {background-color: hsl(290, 100%, 50%);}   /* Blue */
+    100% {background-color: hsl(0, 100%, 50%);}  /* red */
+  }
+  
+  /* Add a class with a random animation delay */
+  .circle0 {
+    animation: colorChange 5s infinite;
+    animation-delay: 1000ms;
+  }
+  
+  .circle1 {
+    animation: colorChange 5s infinite;
+    animation-delay: 2300ms;
+  }
+  
+  .circle2 {
+    animation: colorChange 5s infinite;
+    animation-delay: 800ms;
+  }
+  
+  .circle3 {
+    animation: colorChange 5s infinite;
+    animation-delay: 1400ms;
+  }
+  
+  .circle4 {
+    animation: colorChange 5s infinite;
+    animation-delay: 300ms;
+  }
