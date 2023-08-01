@@ -198,7 +198,7 @@ useEffect(() => {
   return () => {
       window.removeEventListener('load', startAnimation);
   };
-});
+}, [baseCircles, animate]);
 
   return (
     <div className='app-container'>
