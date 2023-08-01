@@ -25,7 +25,6 @@ function Circle({ id, radius, pos, onClick }) {
       }}
     //whileHover={{scale: 2.5}}
     onTapStart={() => onClick(id)}
-      
     />
   );
 }
