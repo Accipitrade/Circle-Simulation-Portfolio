@@ -1,5 +1,5 @@
 import './Circle.css';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 //make the circles cycle rainbow colors through css

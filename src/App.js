@@ -197,7 +197,7 @@ useEffect(() => {
   return () => {
       window.removeEventListener('load', startAnimation);
   };
-});
+}, []);
 
   return (
     <div className='app-container'>
