@@ -173,9 +173,8 @@ function App() {
     randomPush.current = '';
     animationFrameID.current = requestAnimationFrame(animate);
   };
+
   
-  // hopefully disabling this warning because I know it won't go infinite and otherwise it won't compile. will create workaround later.
- // eslint-disable-next-line react-hooks/exhaustive-deps
 useEffect(() => {
 
   setCircles(baseCircles);
