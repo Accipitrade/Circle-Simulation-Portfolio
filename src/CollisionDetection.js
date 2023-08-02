@@ -76,7 +76,7 @@ function DotProduct(v1, v2) {
  * Assuming two circles have collided, this will return the velocity vectors for both circles post-collision.
  */
 
-function GetCCVel(c1Position, c1Vel, c2Position, c2Vel) {
+function GetCCVel(c1Position, c1Vel, c2Position, c2Vel, getOneVel = false) {
     const c1x = c1Position.x;
     const c1y = c1Position.y;
     const c2x = c2Position.x;
@@ -190,6 +190,8 @@ function MoveCW(cPosition, cr, screenW, screenH) {
 
     return cVelNew;
 }
+
+
 
 
 
