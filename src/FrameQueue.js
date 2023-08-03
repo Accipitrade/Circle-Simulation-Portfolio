@@ -29,7 +29,11 @@ FrameQueue.prototype.clear = function() {
 };
 
 FrameQueue.prototype.getframeQueue = function() {
-    return this.frameQueue.slice(0, this.length);
+    let arr = new Array(this.length);
+    for(let i = this.length - 1; i >= 0; i--){
+        arr[i] = this.frameQueue[i];
+    }
+    return arr;
 };
 
 FrameQueue.prototype.isFull = function() {
