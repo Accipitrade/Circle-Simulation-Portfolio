@@ -162,7 +162,7 @@ function App() {
           };
         });
 
-        let dragCollisionID = 0;
+        let dragCollisionID = 0; //this variable holds the ID of the circle that the dragged circle collided with
         // Check and resolve collisions after each time step
         for (let i = 0; i < newCircles.length; i++) {
           for (let j = i + 1; j < newCircles.length; j++) {
@@ -231,7 +231,8 @@ function App() {
           }
         }
 
-        // Check and resolve collisions after each time step
+        // Check and resolve collisions a second time, ignoring the dragged circle collisions. 
+        //this resolves multi-body collisions.
         for (let i = 0; i < newCircles.length; i++) {
           for (let j = i + 1; j < newCircles.length; j++) {
             //if not dragging and i or j are not equal to the dragged circle
@@ -275,7 +276,8 @@ function App() {
             }
           }
         }
-
+        
+        //checking circle-wall collisions a final time prevents circles from being pushed out of bounds from other collisions
         newCircles.forEach((circle) => {
           // Check and resolve Circle-Wall collisions
           if (CheckCW(circle.position, circle.radius, screenSize.current.width, screenSize.current.height)) {
