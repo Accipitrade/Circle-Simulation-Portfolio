@@ -150,7 +150,7 @@ function App() {
 
           // Check and resolve Circle-Wall collisions
           if (CheckCW(newPosition, circle.radius, screenSize.current.width, screenSize.current.height)) {
-            console.log("colliding with wall!");
+            //console.log("colliding with wall!");
             const [newPos, wallNormal] = MoveCW(newPosition, circle.radius, screenSize.current.width, screenSize.current.height);
             newPosition.x = newPos.x;
             newPosition.y = newPos.y;
@@ -195,8 +195,18 @@ function App() {
                 if (isDragging.current) {
                   if (i === draggedCircle.current) {
                     collisionVelocities = [{ x: 0, y: 0 }, FindCompositeVel(mouseFrameData.current.getframeQueue())];
+                    collisionVelocities[1].x *= 150;
+                    collisionVelocities[1].y *= 150;
+                    console.log(collisionVelocities[1].x + " " + collisionVelocities[1].y);
                   } else if (j === draggedCircle.current) {
+
+                    //I don't think this statement is getting called at all...
+                    //maybe get rid of it?
+
                     collisionVelocities = [FindCompositeVel(mouseFrameData.current.getframeQueue()), { x: 0, y: 0 }];
+                    collisionVelocities[0].x *= 40;
+                    collisionVelocities[0].y *= 40;
+                    console.log(collisionVelocities[0].x + " " + collisionVelocities[0].y);
                   }
                 } else {
                   collisionVelocities = GetCCVel(

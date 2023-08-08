@@ -37,7 +37,7 @@ function MoveCC(c1Position, c1r, c2Position, c2r) {
       (c2x - c1x) * (c2x - c1x) +
       (c2y - c1y) * (c2y - c1y));
 
-  const buffer = 0;
+  const buffer = .2;
   const moveDist = (c2r + c1r) - distanceBetweenCircles + buffer;
 
   const c1Pos = {
@@ -80,7 +80,7 @@ function DotProduct(v1, v2) {
  * Assuming two circles have collided, this will return the velocity vectors for both circles post-collision.
  */
 
-function GetCCVel(c1Position, c1Vel, c2Position, c2Vel, getOneVel = false) {
+function GetCCVel(c1Position, c1Vel, c2Position, c2Vel, restitution = .01, getOneVel = false) {
   const c1x = c1Position.x;
   const c1y = c1Position.y;
   const c2x = c2Position.x;
@@ -101,6 +101,10 @@ function GetCCVel(c1Position, c1Vel, c2Position, c2Vel, getOneVel = false) {
   let velocityOnNormalScalar = DotProduct(rv, collisionNormal);
   let velocityOnNormal = { x: collisionNormal.x * velocityOnNormalScalar, y: collisionNormal.y * velocityOnNormalScalar };
 
+  // Modify the velocity on normal by the restitution coefficient
+  velocityOnNormal.x *= (1 + restitution);
+  velocityOnNormal.y *= (1 + restitution);
+
   // Component of velocity perpendicular to collision normal.
   let velocityPerpendicularToNormal = { x: rv.x - velocityOnNormal.x, y: rv.y - velocityOnNormal.y };
 
@@ -110,13 +114,12 @@ function GetCCVel(c1Position, c1Vel, c2Position, c2Vel, getOneVel = false) {
     return [{ x: -c1Vel.x, y: -c1Vel.y }, { x: -c2Vel.x, y: -c2Vel.y }];
   }
 
-  //velocityPerpendicularToNormal = {x:velocityPerpendicularToNormal.x * 2, y: velocityPerpendicularToNormal.y * 2};
-
   let c1VelNew = { x: c1Vel.x - velocityPerpendicularToNormal.x, y: c1Vel.y - velocityPerpendicularToNormal.y };
   let c2VelNew = { x: c2Vel.x + velocityPerpendicularToNormal.x, y: c2Vel.y + velocityPerpendicularToNormal.y };
 
   return ([c1VelNew, c2VelNew]);
 }
+
 
 function CheckCW(cPosition, cr, screenW, screenH) {
   const cx = cPosition.x;

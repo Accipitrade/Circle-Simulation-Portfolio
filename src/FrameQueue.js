@@ -34,7 +34,7 @@ FrameQueue.prototype.getframeQueue = function() {
     let arr = new Array(this.length);
     for(let i = 0; i < this.length; i++){
         arr[i] = this.get(i);
-        console.log("iteration" + i + " " + arr[i]);
+        //console.log("iteration" + i + " " + arr[i]);
     }
     return arr;
 };
