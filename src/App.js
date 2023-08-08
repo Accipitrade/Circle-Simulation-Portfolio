@@ -189,14 +189,14 @@ function App() {
               if (isDragging.current) {
                 if (i === draggedCircle.current) {
                   collisionVelocities = [{ x: 0, y: 0 }, FindCompositeVel(mouseFrameData.current.getframeQueue())];
-                  collisionVelocities[1].x *= 150;
-                  collisionVelocities[1].y *= 150;
+                  collisionVelocities[1].x *= 100;
+                  collisionVelocities[1].y *= 100;
                   dragCollisionID = j;
                   console.log(collisionVelocities[1].x + " " + collisionVelocities[1].y);
                 } else if (j === draggedCircle.current) {
                   collisionVelocities = [FindCompositeVel(mouseFrameData.current.getframeQueue()), { x: 0, y: 0 }];
-                  collisionVelocities[0].x *= 150;
-                  collisionVelocities[0].y *= 150;
+                  collisionVelocities[0].x *= 100;
+                  collisionVelocities[0].y *= 100;
                   dragCollisionID = i;
                   console.log(collisionVelocities[0].x + " " + collisionVelocities[0].y);
                 }
@@ -275,6 +275,17 @@ function App() {
             }
           }
         }
+
+        newCircles.forEach((circle) => {
+          // Check and resolve Circle-Wall collisions
+          if (CheckCW(circle.position, circle.radius, screenSize.current.width, screenSize.current.height)) {
+            const [newPos, wallNormal] = MoveCW(circle.position, circle.radius, screenSize.current.width, screenSize.current.height);
+            circle.position.x = newPos.x;
+            circle.position.y = newPos.y;
+            circle.velocity = GetCWVel(circle.position, circle.velocity, wallNormal);
+          }
+        });
+
 
       }
 
