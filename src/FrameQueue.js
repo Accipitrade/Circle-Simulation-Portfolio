@@ -2,36 +2,38 @@ function FrameQueue(n) {
     this.frameQueue = new Array(n);
     this.size = n;
     this.length = 0;
+    this.front = 0;
+    this.rear = 0;
 }
 
 FrameQueue.prototype.get = function(i) {
     if (i < 0 || i >= this.length) {
         return undefined;
     }
-    return this.frameQueue[i % this.size];
+    return this.frameQueue[(this.front + i) % this.size];
 };
 
 FrameQueue.prototype.push = function(v) {
-    //console.log("adding position to queue");
     if (this.length === this.size) {
-        for (let i = this.size - 1; i > 0; i--) {
-            this.frameQueue[i] = this.frameQueue[i - 1];
-        }
+        this.front = (this.front + 1) % this.size; // Move the front pointer to next position
     } else {
         this.length++;
     }
-    this.frameQueue[0] = v;
+    this.frameQueue[this.rear] = v;
+    this.rear = (this.rear + 1) % this.size; // Move the rear pointer to next position
 };
 
 FrameQueue.prototype.clear = function() {
     this.frameQueue = new Array(this.size);
     this.length = 0;
+    this.front = 0;
+    this.rear = 0;
 };
 
 FrameQueue.prototype.getframeQueue = function() {
     let arr = new Array(this.length);
-    for(let i = this.length - 1; i >= 0; i--){
-        arr[i] = this.frameQueue[i];
+    for(let i = 0; i < this.length; i++){
+        arr[i] = this.get(i);
         console.log("iteration" + i + " " + arr[i]);
     }
     return arr;
