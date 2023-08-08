@@ -111,8 +111,6 @@ function App() {
       PushFrameData();
     }
 
-    let collisionDetected = true;
-
     setCircles((prevCircles) => {
       let newCircles = [...prevCircles];
 
@@ -164,81 +162,119 @@ function App() {
           };
         });
 
+        let dragCollisionID = 0;
+        // Check and resolve collisions after each time step
+        for (let i = 0; i < newCircles.length; i++) {
+          for (let j = i + 1; j < newCircles.length; j++) {
+            //if not dragging and i or j are not equal to the dragged circle
+            //if (!(isDragging.current && (i === draggedCircle.current || j === draggedCircle.current))) {
+            if (
+              //check collisions for two circles
+              CheckCC(
+                newCircles[i].position,
+                newCircles[i].radius,
+                newCircles[j].position,
+                newCircles[j].radius
+              )
+            ) {
+              //if they collided, move them so they're not
+              const collisionPositions = MoveCC(
+                newCircles[i].position,
+                newCircles[i].radius,
+                newCircles[j].position,
+                newCircles[j].radius
+              );
 
-        //while (collisionDetected) {
-          collisionDetected = false;
-          // Check and resolve collisions after each time step
-          for (let i = 0; i < newCircles.length; i++) {
-            for (let j = i + 1; j < newCircles.length; j++) {
-              //if not dragging and i or j are not equal to the dragged circle
-              //if (!(isDragging.current && (i === draggedCircle.current || j === draggedCircle.current))) {
-              if (
-                //check collisions for two circles
-                CheckCC(
+              let collisionVelocities = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
+              if (isDragging.current) {
+                if (i === draggedCircle.current) {
+                  collisionVelocities = [{ x: 0, y: 0 }, FindCompositeVel(mouseFrameData.current.getframeQueue())];
+                  collisionVelocities[1].x *= 150;
+                  collisionVelocities[1].y *= 150;
+                  dragCollisionID = j;
+                  console.log(collisionVelocities[1].x + " " + collisionVelocities[1].y);
+                } else if (j === draggedCircle.current) {
+                  collisionVelocities = [FindCompositeVel(mouseFrameData.current.getframeQueue()), { x: 0, y: 0 }];
+                  collisionVelocities[0].x *= 150;
+                  collisionVelocities[0].y *= 150;
+                  dragCollisionID = i;
+                  console.log(collisionVelocities[0].x + " " + collisionVelocities[0].y);
+                }
+              } else {
+                collisionVelocities = GetCCVel(
                   newCircles[i].position,
-                  newCircles[i].radius,
+                  newCircles[i].velocity,
                   newCircles[j].position,
-                  newCircles[j].radius
-                )
-              ) {
-                //collision was detected
-                collisionDetected = true;
-                //if they collided, move them so they're not
-                const collisionPositions = MoveCC(
-                  newCircles[i].position,
-                  newCircles[i].radius,
-                  newCircles[j].position,
-                  newCircles[j].radius
+                  newCircles[j].velocity
                 );
-
-                let collisionVelocities = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
-                if (isDragging.current) {
-                  if (i === draggedCircle.current) {
-                    collisionVelocities = [{ x: 0, y: 0 }, FindCompositeVel(mouseFrameData.current.getframeQueue())];
-                    collisionVelocities[1].x *= 150;
-                    collisionVelocities[1].y *= 150;
-                    console.log(collisionVelocities[1].x + " " + collisionVelocities[1].y);
-                  } else if (j === draggedCircle.current) {
-
-                    //I don't think this statement is getting called at all...
-                    //maybe get rid of it?
-
-                    collisionVelocities = [FindCompositeVel(mouseFrameData.current.getframeQueue()), { x: 0, y: 0 }];
-                    collisionVelocities[0].x *= 40;
-                    collisionVelocities[0].y *= 40;
-                    console.log(collisionVelocities[0].x + " " + collisionVelocities[0].y);
-                  }
-                } else {
-                  collisionVelocities = GetCCVel(
-                    newCircles[i].position,
-                    newCircles[i].velocity,
-                    newCircles[j].position,
-                    newCircles[j].velocity
-                  );
-                }
-
-                if (isDragging.current) {
-                  if (i === draggedCircle.current) {
-                    newCircles[j].position = collisionPositions[1];
-                    newCircles[j].velocity = collisionVelocities[1];
-                    //set j's position and velocity
-                  } else if (j === draggedCircle.current) {
-                    newCircles[i].position = collisionPositions[0];
-                    newCircles[i].velocity = collisionVelocities[0];
-                    //set i's position and velocity
-                  }
-                } else {
-                  //set both position and velocity
-                  newCircles[i].position = collisionPositions[0];
-                  newCircles[j].position = collisionPositions[1];
-                  newCircles[i].velocity = collisionVelocities[0];
-                  newCircles[j].velocity = collisionVelocities[1];
-                }
-
               }
+
+              if (isDragging.current) {
+                if (i === draggedCircle.current) {
+                  newCircles[j].position = collisionPositions[1];
+                  newCircles[j].velocity = collisionVelocities[1];
+                  //set j's position and velocity
+                } else if (j === draggedCircle.current) {
+                  newCircles[i].position = collisionPositions[0];
+                  newCircles[i].velocity = collisionVelocities[0];
+                  //set i's position and velocity
+                }
+              } else {
+                //set both position and velocity
+                newCircles[i].position = collisionPositions[0];
+                newCircles[j].position = collisionPositions[1];
+                newCircles[i].velocity = collisionVelocities[0];
+                newCircles[j].velocity = collisionVelocities[1];
+              }
+
             }
           }
-       // }
+        }
+
+        // Check and resolve collisions after each time step
+        for (let i = 0; i < newCircles.length; i++) {
+          for (let j = i + 1; j < newCircles.length; j++) {
+            //if not dragging and i or j are not equal to the dragged circle
+            //if (!(isDragging.current && (i === draggedCircle.current || j === draggedCircle.current))) {
+            if (isDragging.current && i === draggedCircle.current || i === dragCollisionID || j === draggedCircle.current || j === dragCollisionID) {
+              continue;
+            }
+
+            if (
+              //check collisions for two circles
+              CheckCC(
+                newCircles[i].position,
+                newCircles[i].radius,
+                newCircles[j].position,
+                newCircles[j].radius
+              )
+            ) {
+              //if they collided, move them so they're not
+              const collisionPositions = MoveCC(
+                newCircles[i].position,
+                newCircles[i].radius,
+                newCircles[j].position,
+                newCircles[j].radius
+              );
+
+              let collisionVelocities = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
+
+              collisionVelocities = GetCCVel(
+                newCircles[i].position,
+                newCircles[i].velocity,
+                newCircles[j].position,
+                newCircles[j].velocity
+              );
+
+              //set both position and velocity
+              newCircles[i].position = collisionPositions[0];
+              newCircles[j].position = collisionPositions[1];
+              newCircles[i].velocity = collisionVelocities[0];
+              newCircles[j].velocity = collisionVelocities[1];
+
+            }
+          }
+        }
 
       }
 
