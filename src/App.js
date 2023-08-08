@@ -156,6 +156,7 @@ function App() {
             //if not dragging and i or j are not equal to the dragged circle
             //if (!(isDragging.current && (i === draggedCircle.current || j === draggedCircle.current))) {
               if (
+                //check collisions for two circles
                 CheckCC(
                   newCircles[i].position,
                   newCircles[i].radius,
@@ -163,6 +164,7 @@ function App() {
                   newCircles[j].radius
                 )
               ) {
+                //if they collided, move them so they're not
                 const collisionPositions = MoveCC(
                   newCircles[i].position,
                   newCircles[i].radius,
@@ -271,7 +273,7 @@ function App() {
 
   return (
     <div className='app-container'>
-      <div class="center-container">
+      <div className="center-container">
         <h1>GO</h1>
         <h1>WILD!!!!</h1>
       </div>

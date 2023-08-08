@@ -12,7 +12,7 @@ FrameQueue.prototype.get = function(i) {
 };
 
 FrameQueue.prototype.push = function(v) {
-    console.log("adding position to queue");
+    //console.log("adding position to queue");
     if (this.length === this.size) {
         for (let i = this.size - 1; i > 0; i--) {
             this.frameQueue[i] = this.frameQueue[i - 1];
@@ -32,6 +32,7 @@ FrameQueue.prototype.getframeQueue = function() {
     let arr = new Array(this.length);
     for(let i = this.length - 1; i >= 0; i--){
         arr[i] = this.frameQueue[i];
+        console.log("iteration" + i + " " + arr[i]);
     }
     return arr;
 };
