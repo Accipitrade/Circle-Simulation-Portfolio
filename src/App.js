@@ -79,8 +79,16 @@ function App() {
     };
 
     const updateMousePosition = (ev) => {
-      mousePosition.current = { x: ev.clientX, y: ev.clientY };
-    };
+      let x, y;
+      if (ev.type === 'touchmove') {
+          x = ev.touches[0].clientX;
+          y = ev.touches[0].clientY;
+      } else {
+          x = ev.clientX;
+          y = ev.clientY;
+      }
+      mousePosition.current = { x: x, y: y };
+  };
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
@@ -100,6 +108,7 @@ function App() {
     
     // Event listener to update on screen resize
     window.addEventListener('resize', updateScreenSize);
+    // Mouse Position/Mobile Tap Position event listeners
     window.addEventListener('mousemove', updateMousePosition);
     window.addEventListener('mousedown', OnMouseDown);
     window.addEventListener('mouseup', OnMouseUp);
@@ -405,7 +414,10 @@ function App() {
   }
 
   //general purpose mouse stuff
-  const OnMouseDown = () => {
+  const OnMouseDown = (ev) => {
+    if (ev.type === 'touchstart') {
+      ev.preventDefault();
+    }
     mouseClickTime.current = Date.now();
   }
 
