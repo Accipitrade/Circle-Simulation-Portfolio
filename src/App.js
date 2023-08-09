@@ -103,6 +103,10 @@ function App() {
     window.addEventListener('mousemove', updateMousePosition);
     window.addEventListener('mousedown', OnMouseDown);
     window.addEventListener('mouseup', OnMouseUp);
+    window.addEventListener('touchstart', OnMouseDown);
+    window.addEventListener('touchmove', updateMousePosition);
+    window.addEventListener('touchcancel', OnMouseUp);
+    window.addEventListener('touchend', OnMouseUp);
 
     // Clean up the event listeners on unmount
     return () => {
@@ -111,6 +115,10 @@ function App() {
       window.removeEventListener('mousedown', OnMouseDown);
       window.removeEventListener('mouseup', OnMouseUp);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('touchstart', OnMouseDown);
+    window.removeEventListener('touchmove', updateMousePosition);
+    window.removeEventListener('touchcancel', OnMouseUp);
+    window.removeEventListener('touchend', OnMouseUp);
     };
   }, []);
 
