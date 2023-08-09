@@ -82,9 +82,22 @@ function App() {
       mousePosition.current = { x: ev.clientX, y: ev.clientY };
     };
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+          animationFrameID.current = requestAnimationFrame(animate);
+      } else {
+          cancelAnimationFrame(animationFrameID.current);
+      }
+  };
+
+
+
     // Initial update
     updateScreenSize();
 
+    // To handle when the user tabs out
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
     // Event listener to update on screen resize
     window.addEventListener('resize', updateScreenSize);
     window.addEventListener('mousemove', updateMousePosition);
@@ -100,11 +113,29 @@ function App() {
     };
   }, []);
 
+
+  useEffect(() => {
+    if(isPaused){
+      cancelAnimationFrame(animate);
+    } else {
+      requestAnimationFrame(animate);
+    }
+  }, [isPaused]);
+
   const [circles, setCircles] = useState(baseCircles);
 
   const animationFrameID = useRef();
 
   const timeStep = 0.025;
+
+  useEffect(() => {
+    
+    
+    return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+}, []);
+
 
   const animate = useCallback(() => {
 
