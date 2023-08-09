@@ -37,7 +37,7 @@ function MoveCC(c1Position, c1r, c2Position, c2r) {
       (c2x - c1x) * (c2x - c1x) +
       (c2y - c1y) * (c2y - c1y));
 
-  const buffer = .2;
+  const buffer = 0;
   const moveDist = (c2r + c1r) - distanceBetweenCircles + buffer;
 
   const c1Pos = {
@@ -132,6 +132,22 @@ function CheckCW(cPosition, cr, screenW, screenH) {
   const adjustedYTop = cy - cr;
 
   return (adjustedXRight > screenW || adjustedXLeft < 0 || adjustedYBottom > screenH || adjustedYTop < 0);
+}
+
+function CheckCWTouch(cPosition, cr, screenW, screenH, threshold = 0.0001) {
+  const cx = cPosition.x;
+  const cy = cPosition.y;
+
+  // Adjusted x and y positions, considering the radius of the circle
+  const adjustedXRight = cx + cr;
+  const adjustedXLeft = cx - cr;
+  const adjustedYBottom = cy + cr;
+  const adjustedYTop = cy - cr;
+
+  return (Math.abs(adjustedXRight - screenW) <= threshold ||
+          Math.abs(adjustedXLeft) <= threshold ||
+          Math.abs(adjustedYBottom - screenH) <= threshold ||
+          Math.abs(adjustedYTop) <= threshold);
 }
 
 
@@ -237,4 +253,4 @@ function FindCompositeVel(frameData) {
 
 
 
-export { CheckCC, MoveCC, GetCCVel, GetMagnitude, CheckCW, MoveCW, GetCWVel, FindCompositeVel }
+export { CheckCC, MoveCC, GetCCVel, GetMagnitude, CheckCW, MoveCW, GetCWVel, FindCompositeVel, CheckCWTouch }
