@@ -213,7 +213,7 @@ function GetCWVel(cPosition, cVel, wallNormal, e = 0.8) { // Set e as per your n
 
 function FindCompositeVel(frameData) {
   if (!Array.isArray(frameData) || frameData.length < 2) {
-    throw new Error('At least two positions are required to calculate velocity.');
+    return {x: 0, y: 0};
   }
 
   // Initialize variables to store the sum of velocity components
