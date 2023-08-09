@@ -110,6 +110,7 @@ function App() {
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mousedown', OnMouseDown);
       window.removeEventListener('mouseup', OnMouseUp);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
@@ -127,15 +128,6 @@ function App() {
   const animationFrameID = useRef();
 
   const timeStep = 0.025;
-
-  useEffect(() => {
-    
-    
-    return () => {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-}, []);
-
 
   const animate = useCallback(() => {
 
