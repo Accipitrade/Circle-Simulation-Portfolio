@@ -37,7 +37,7 @@ function MoveCC(c1Position, c1r, c2Position, c2r) {
       (c2x - c1x) * (c2x - c1x) +
       (c2y - c1y) * (c2y - c1y));
 
-  const buffer = 0;
+  const buffer = .01; //small buffer to prevent infinite collisions in the do-while loop
   const moveDist = (c2r + c1r) - distanceBetweenCircles + buffer;
 
   const c1Pos = {
