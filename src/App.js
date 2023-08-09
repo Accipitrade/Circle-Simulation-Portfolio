@@ -110,6 +110,7 @@ function App() {
 
     if (isDragging.current) {
       PushFrameData();
+      //console.log("dragging circle: " + draggedCircle.current);
     }
 
     setCircles((prevCircles) => {
@@ -321,7 +322,7 @@ function App() {
           if(isDragging.current){
             let newPositions;
             if(CheckCWTouch(newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius, screenSize.current.width, screenSize.current.height)){
-              console.log("attempting to separate circle in corner.");
+              //console.log("attempting to separate circle in corner.");
               if(CheckCC(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius)){
                 newPositions = MoveCC(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius);
                 newCircles[draggedCircle.current].position = newPositions[0];
@@ -365,22 +366,22 @@ function App() {
     };
   }, []);
 
+  //used for circle interactions
   const OnMouseClick = (id) => {
     draggedCircle.current = id; //use the flag to move the circle to this position with an offset and ignore velocity, since it's being dragged
+    isDragging.current = true; //boolean flag gets set to true here
+    PushFrameData();
   }
 
+  //general purpose mouse stuff
   const OnMouseDown = () => {
-    //console.log("clicking circle " + id + " with position " + mousePosition.current.x + ", " + mousePosition.current.y);
-    isDragging.current = true; //boolean flag gets set to true here
-    //need some date.now variable, ref variable!
-    PushFrameData();
     mouseClickTime.current = Date.now();
   }
 
   const OnMouseUp = () => {
 
     if(Date.now() - mouseClickTime.current <= 200){
-      console.log("clicked!")
+      //console.log("clicked!")
     } else {
       compositeVelocity.current = FindCompositeVel(mouseFrameData.current.getframeQueue());
       //mouseClickedUp.current = true;
@@ -405,8 +406,8 @@ function App() {
   return (
     <div className='app-container'>
       <div className="center-container">
-        <h1>GO</h1>
-        <h1>WILD!!!!</h1>
+        <h1 style={{userSelect: 'none'}}>GO</h1>
+        <h1 style={{userSelect: 'none'}}>WILD!!!!</h1>
       </div>
       {circles.map(circle => (
         <Circle className={`circle${circle.id}`}
