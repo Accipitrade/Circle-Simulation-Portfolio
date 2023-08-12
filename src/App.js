@@ -181,7 +181,7 @@ const CollisionDetection = () => {
             //if the user was dragging a circle and let go, transfer the mouse's velocity to the circle
             //console.log(mouseClickUpID.current);
           if(mouseClickedUp.current && circle.id === mouseClickUpID.current){
-            console.log("reached");
+            //console.log("reached");
               newVelocity = {
                 x: compositeVelocity.current.x * 98,
                 y: compositeVelocity.current.y * 98,
@@ -302,7 +302,7 @@ const CollisionDetection = () => {
             for (let j = i + 1; j < newCircles.length; j++) {
               //if not dragging and i or j are not equal to the dragged circle
               //if (!(isDragging.current && (i === draggedCircle.current || j === draggedCircle.current))) {
-              if (isDragging.current && i === draggedCircle.current || j === draggedCircle.current) {
+              if (isDragging.current && (i === draggedCircle.current || j === draggedCircle.current)) {
                 continue;
               }
   
@@ -383,7 +383,7 @@ const CollisionDetection = () => {
 
     if (isDragging.current) {
       PushFrameData();
-      console.log("dragging circle: " + draggedCircle.current);
+      //console.log("dragging circle: " + draggedCircle.current);
     }
 
     CollisionDetection();
