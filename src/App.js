@@ -143,13 +143,19 @@ function App() {
     }
   }, [isPaused]);
 
-  
   const [circles, setCircles] = useState(baseCircles);
 
   const animationFrameID = useRef();
 
   const timeStep = 0.025;
-const CollisionDetection = () => {
+
+  const animate = useCallback(() => {
+
+    if (isDragging.current) {
+      PushFrameData();
+      console.log("dragging circle: " + draggedCircle.current);
+    }
+
     setCircles((prevCircles) => {
       let newCircles = [...prevCircles];
 
@@ -377,17 +383,6 @@ const CollisionDetection = () => {
 
       return newCircles;
     });
-  }
-
-  const animate = useCallback(() => {
-
-    if (isDragging.current) {
-      PushFrameData();
-      console.log("dragging circle: " + draggedCircle.current);
-    }
-
-    CollisionDetection();
-    
     animationFrameID.current = requestAnimationFrame(animate);
   }, []);
 
