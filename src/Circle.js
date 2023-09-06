@@ -22,7 +22,7 @@ function Circle({ id, radius, pos, onClick }) {
         borderRadius: '100%',
         backgroundColor:'red'
       }}
-    onTapStart={() => onClick(id)}
+    onTapStart={() => {onClick(id);}}
     />
   );
 }

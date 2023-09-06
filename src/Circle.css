@@ -1,35 +1,44 @@
 @keyframes colorChange {
-    0% {background-color: hsl(0, 100%, 50%);}      /* Red */
-    20% {background-color: hsl(60, 100%, 50%);}    /* Orange */
-    40% {background-color: hsl(120, 100%, 50%);}   /* Yellow */
-    60% {background-color: hsl(180, 100%, 50%);}   /* Green */
-    70% {background-color: hsl(240, 100%, 50%);}   /* Blue */
-    90% {background-color: hsl(290, 100%, 50%);}   /* Blue */
-    100% {background-color: hsl(0, 100%, 50%);}  /* red */
-  }
-  
-  /* Add a class with a random animation delay */
-  .circle0 {
-    animation: colorChange 5s infinite;
-    animation-delay: 1000ms;
-  }
-  
-  .circle1 {
-    animation: colorChange 5s infinite;
-    animation-delay: 2300ms;
-  }
-  
-  .circle2 {
-    animation: colorChange 5s infinite;
-    animation-delay: 800ms;
-  }
-  
-  .circle3 {
-    animation: colorChange 5s infinite;
-    animation-delay: 1400ms;
-  }
-  
-  .circle4 {
-    animation: colorChange 5s infinite;
-    animation-delay: 300ms;
-  }
+  0% {background-color: hsl(0, 100%, 50%);}      /* Red */
+  20% {background-color: hsl(60, 100%, 50%);}    /* Orange */
+  40% {background-color: hsl(120, 100%, 50%);}   /* Yellow */
+  60% {background-color: hsl(180, 100%, 50%);}   /* Green */
+  70% {background-color: hsl(240, 100%, 50%);}   /* Blue */
+  90% {background-color: hsl(290, 100%, 50%);}   /* Blue */
+  100% {background-color: hsl(0, 100%, 50%);}    /* red */
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.circle0, .circle1, .circle2, .circle3, .circle4 {
+  opacity: 0;
+  animation-name: colorChange, fadeIn;
+  animation-timing-function: ease-in-out; /* ensure smooth fading */
+  animation-duration: 5s, 1s; /* 1s for fade in */
+  animation-fill-mode: forwards; /* to ensure the end opacity remains at 1 */
+  animation-delay: 1000ms, 10000ms; /* 10s delay for the fadeIn animation */
+  z-index: 1;
+}
+
+.circle0 {
+  animation-delay: 1000ms, 10000ms;
+}
+
+.circle1 {
+  animation-delay: 2300ms, 10000ms;
+}
+
+.circle2 {
+  animation-delay: 800ms, 10000ms;
+}
+
+.circle3 {
+  animation-delay: 1400ms, 10000ms;
+}
+
+.circle4 {
+  animation-delay: 300ms, 10000ms;
+}
