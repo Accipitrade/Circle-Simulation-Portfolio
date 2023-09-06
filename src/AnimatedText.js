@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Popup from './Popup'; // Ensure the path is correct
+import resume from './SlavinResume2022.pdf';
+import pic from './headshot.png';
 
 const FadeInChunk = ({ chunk, delay, isLink, onClick, href }) => {
   const variants = {
@@ -33,7 +35,7 @@ const AnimatedText = ({isPaused}) => {
     ['Hey!'],
     ["I'm", 'Josh Slavin'],
     ['Click', {chunk: 'here', isLink: true, onClick: () => {setPopupOpen(true); isPaused.current = true;}}, 'to learn more about me'],
-    ['and', {chunk: 'here', isLink: true, href: 'path-to-your-pdf.pdf'}, 'to view my full resume.'],
+    ['and', {chunk: 'here', isLink: true, href: resume}, 'to view my full resume.'],
     ['Or,', 'click a circle to find out more about my projects.'],
     ['This page is a full physics simulation. Have fun!'],
   ];
@@ -57,8 +59,7 @@ const AnimatedText = ({isPaused}) => {
         );
       })}
       <Popup isOpen={isPopupOpen} setIsOpen={() => { setPopupOpen(false); isPaused.current = false;}}>
-        {/* Your image and about me content goes here */}
-        <img src="path-to-your-image.jpg" alt="Josh Slavin" />
+        <img src={pic} alt="Josh Slavin" />
         <p>About me content...</p>
       </Popup>
     </div>

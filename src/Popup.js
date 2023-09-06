@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function Popup({ children, isOpen, setIsOpen }) {
   const closeModal = () => {
-    setIsOpen();
+    setIsOpen(false); // Ensure that the modal is closed when this is called
   };
 
   return (
@@ -18,12 +18,15 @@ function Popup({ children, isOpen, setIsOpen }) {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            background: 'white',
-            padding: '20px',
-            height: '100px',
-            width: '100px',
-            boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-            zIndex: '10'
+            background: '#87a9b2',
+            maxWidth: '90%',  
+            maxHeight: '90%', 
+            zIndex: '10',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'auto' // for content that might exceed the max sizes
           }}
         >
           <div
@@ -37,7 +40,9 @@ function Popup({ children, isOpen, setIsOpen }) {
           >
             X
           </div>
-          {children}
+          <div style={{ padding: '20px', textAlign: 'center' }}>
+            {children}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

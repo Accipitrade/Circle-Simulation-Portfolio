@@ -1,10 +1,25 @@
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url(./Fonts/brandon-grotesque-black-58a8a3e824392.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque Light';
+  src: url(./Fonts/brandon-grotesque-light-58a8a4b38001d.otf);
+  font-weight: lighter;
+  font-style: normal;
+}
+
+
 body, html {
   margin: 0;
   padding: 0;
   overflow: hidden; /* prevent scrollbars */
   width: 100%; /* full width */
   height: 100%; /* full height */
-  background-color: grey;
+  background-color: #1f2232;
 }
 
 .app-container {
@@ -31,7 +46,12 @@ body, html {
 }
 
 h1{
-  color:rgba(134, 16, 138, 0.61);
+  color: #985f99;
   font-weight: 900;
+  font-family: 'Brandon Grotesque', 'Franklin Gothic Medium'
+  
 }
 
+a:link, a:visited{
+  color: #985f99;
+}

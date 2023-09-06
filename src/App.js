@@ -3,9 +3,9 @@ import Circle from './Circle.js';
 import { CheckCC, MoveCC, GetCCVel, CheckCW, MoveCW, GetCWVel, GetMagnitude, FindCompositeVel, CheckCWTouch } from './CollisionDetection.js';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import FrameQueue from './FrameQueue.js';
-import { AnimatePresence } from 'framer-motion';
 import Popup from './Popup.js'
 import AnimatedText from './AnimatedText';
+import resume from './SlavinResume2022.pdf'
 
 function App() {
 
@@ -468,7 +468,7 @@ const PortfolioContent = () => {
           
         </div>
       );
-    case 2: //cooking king
+    case 2: //cooking king (coming soon)
     return(
       <div>
         
@@ -486,12 +486,17 @@ const PortfolioContent = () => {
         
       </div>
     );
-    case 5: //each website you build should have its own circle, not just one, silly!
+    case 5: //simcha website (coming soon) upscale israeli cuisine with small plates (do better josh)
     return(
       <div>
         
       </div>
     );
+
+    //bert model for steam review analysis
+
+    //Lobster proper (coming soon) boston-based food truck and catering selling traditional and fresh takes on lobster rolls!
+
   }
 }
 
