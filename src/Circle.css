@@ -9,7 +9,7 @@
   animation-timing-function: ease-in-out; /* ensure smooth fading */
   animation-duration: 1s; /* 1s for fade in */
   animation-fill-mode: forwards; /* to ensure the end opacity remains at 1 */
-  animation-delay: 10000ms; /* 10s delay for the fadeIn animation */
+  animation-delay: 14000ms; /* 12s delay for the fadeIn animation */
   z-index: 1;
   background-color: #44ffd1;
 }

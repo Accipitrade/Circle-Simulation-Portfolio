@@ -5,7 +5,6 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import FrameQueue from './FrameQueue.js';
 import Popup from './Popup.js'
 import AnimatedText from './AnimatedText';
-import resume from './SlavinResume2022.pdf'
 
 function App() {
 
@@ -507,8 +506,6 @@ const PortfolioContent = () => {
       <Popup isOpen={isOpen} setIsOpen={ () => {setIsOpen(false); isPaused.current = false;}}>
         {PortfolioContent()}
       </Popup>
-
-
 
       <div className="center-container">
         <AnimatedText isPaused={isPaused}/>

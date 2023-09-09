@@ -14,7 +14,7 @@ function Popup({ children, isOpen, setIsOpen }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           style={{
-            position: 'fixed',
+            position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
@@ -26,7 +26,8 @@ function Popup({ children, isOpen, setIsOpen }) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            overflow: 'auto' // for content that might exceed the max sizes
+            overflow: 'auto', // for content that might exceed the max sizes
+            borderRadius: '0%'
           }}
         >
           <div
@@ -40,7 +41,7 @@ function Popup({ children, isOpen, setIsOpen }) {
           >
             X
           </div>
-          <div style={{ padding: '20px', textAlign: 'center' }}>
+          <div style={{ padding: '20px', textAlign: 'left' }}>
             {children}
           </div>
         </motion.div>
