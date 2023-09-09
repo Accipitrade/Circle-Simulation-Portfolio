@@ -1,53 +1,71 @@
 import React from 'react';
+import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Popup({ children, isOpen, setIsOpen }) {
-  const closeModal = () => {
-    setIsOpen(false); // Ensure that the modal is closed when this is called
-  };
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: -3;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: start; /* Align to the top */
+  padding-top: 10%;
 
+  z-index: 10;
+`;
+
+const PopupContainer = styled(motion.div)`
+  background-color: lightblue;
+  border-radius: 10px;
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+  padding: 20px;
+  overflow-y: auto;
+  
+  display: flex;
+  flex-direction: column; /* Make it column to prevent stretch */
+  align-items: start;
+
+  @media (max-width: 500px) {
+    .image {
+      display: none;
+    }
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
+
+const Popup = ({ isOpen, setIsOpen, children }) => {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode='wait'>
       {isOpen && (
-        <motion.div
+        <Overlay
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: '#87a9b2',
-            maxWidth: '90%',  
-            maxHeight: '90%', 
-            zIndex: '10',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'auto', // for content that might exceed the max sizes
-            borderRadius: '0%'
-          }}
+          onClick={() => setIsOpen(false)}
         >
-          <div
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '10px',
-              cursor: 'pointer'
-            }}
-            onClick={closeModal}
-          >
-            X
-          </div>
-          <div style={{ padding: '20px', textAlign: 'left' }}>
+          <PopupContainer onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={() => setIsOpen(false)}>X</CloseButton>
             {children}
-          </div>
-        </motion.div>
+          </PopupContainer>
+        </Overlay>
       )}
     </AnimatePresence>
   );
-}
+};
 
 export default Popup;
+

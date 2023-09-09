@@ -1,10 +1,8 @@
 .headshot {
-    scale: 30%;
+    scale: 50%;
     margin: 0%;
     padding: 0%;
-    position: absolute;
-    left: -50px;
-    top: -220px;
+    position: relative;
     border-radius: 3%;
 }
 
@@ -12,6 +10,51 @@
     font-family: 'Brandon Grotesque', 'Franklin Gothic Medium';
 
 }
+
+/* Base styles */
+.popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%; /* Two squares so they take half the width each */
+    height: 150px; /* Assuming the height. Adjust accordingly. */
+    box-sizing: border-box;
+  }
+  
+  .bottom-rectangle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Full width of the parent */
+    height: 150px; /* Assuming the same height as squares. Adjust if needed. */
+    box-sizing: border-box;
+  }
+  
+  /* Media query for screens less than 500px */
+  @media (max-width: 500px) {
+    .image-square {
+      display: none; /* This will hide the image square */
+    }
+  
+    .square {
+      width: 100%; /* Takes full width since image is hidden */
+    }
+  }
+
+  
+
+
 
 .text-container {
     margin-top: 480px;
