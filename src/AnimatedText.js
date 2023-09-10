@@ -10,6 +10,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+
 `;
 
 const UpperLeft = styled.div`
@@ -19,6 +20,9 @@ const UpperLeft = styled.div`
 `;
 
 const UpperRight = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
   padding: 20px;
   & > img {
@@ -27,7 +31,6 @@ const UpperRight = styled.div`
 `;
 
 const Lower = styled.div`
-  margin-top: -150px;
   flex-basis: 100%;
   padding: 20px;
 `;
@@ -40,12 +43,18 @@ const FadeInChunk = ({ chunk, delay, isLink, onClick, href }) => {
   };
 
   const content = isLink ? (
-    <motion.div onClick={onClick} href={href} target={href ? "_blank" : undefined} rel="noopener noreferrer" style={{ textDecoration: 'underline', cursor: 'pointer', display: 'inline-block' }}
-      whileHover={{ scale: 1.1 }} whileTap={{ scale: .8 }}>
-      {chunk}
-    </motion.div>
+    href ? (
+      <motion.a onClick={onClick} href={href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', cursor: 'pointer', display: 'inline-block' }}
+        whileHover={{ scale: 1.1 }} whileTap={{ scale: .7 }}>
+        {chunk}
+      </motion.a>
+    ) : (
+      <motion.div onClick={onClick} style={{ textDecoration: 'underline', cursor: 'pointer', display: 'inline-block' }}
+        whileHover={{ scale: 1.1 }} whileTap={{ scale: .8 }}>
+        {chunk}
+      </motion.div>
+    )
   ) : chunk;
-
   return (
     <motion.span
       variants={variants}
@@ -92,46 +101,56 @@ const AnimatedText = ({ isPaused }) => {
 
       <Popup isOpen={isPopupOpen}
         setIsOpen={() => { setPopupOpen(false); isPaused.current = false; }}>
-          <ContentContainer>
-            <UpperLeft>
-          <h2>A little about me:</h2>
-          <p> I'm a programmer and artist who thrives on crafting one-of-a-kind experiences. While I definitely have a soft spot for AI, VR, and projects grounded in math and physics, what truly drives me is creative problem solving.</p>
-        </UpperLeft>
+        <ContentContainer>
+          <UpperLeft>
+            <h2>A little about me:</h2>
+            <p> I'm a programmer and artist who thrives on crafting one-of-a-kind experiences. While I definitely have a soft spot for AI, VR, and projects grounded in math and physics, what truly drives me is creative problem solving.</p>
+          </UpperLeft>
 
-        <UpperRight className="image">
-          <img className='headshot' src={pic} alt="Josh Slavin" />
-        </UpperRight>
+          <UpperRight className="image">
+            <img className='headshot' src={pic} alt="Josh Slavin" />
+          </UpperRight>
 
-        <Lower>
-          <p>My academic journey began at Becker College, where I achieved both my Bachelor's and Master's of Fine Arts in Interactive Media and Design by 2021. During and out of college, I dove into the freelance world, working on multiple game titles featured in this portfolio. Yet, the desire to further hone my skills brought me back to the academic world. As of now, I'm studying at Boston University and am currently enrolled in their Graduate Certification program -- which I am eagerly looking forward to wrapping up this December!</p>
+          <Lower>
+            <p>My academic journey began at Becker College, where I achieved both my Bachelor's and Master's of Fine Arts in Interactive Media and Design by 2021. During and out of college, I dove into the freelance world, working on multiple game titles featured in this portfolio. Yet, the desire to further hone my skills brought me back to the academic world. As of now, I'm studying at Boston University and am currently enrolled in their Graduate Certification program -- which I am eagerly looking forward to wrapping up this December!</p>
 
-          <p>My passion for learning is equally matched by my enthusiasm for collaboration. Here's a glimpse into some of the languages and frameworks I'm currently using:</p>
+            <p>My passion for learning is equally matched by my enthusiasm for collaboration. Here's a glimpse into some of the languages and frameworks I'm currently using:</p>
 
-          <ul>
-            <li>C</li>
-            <li>C++</li>
-            <li>C#</li>
-            <li>Javascript</li>
-            <li>HTML/CSS</li>
-            <li>Python</li>
-            <li>R</li>
-            <li>React</li>
-            <li>Angular</li>
-            <li>Node.js</li>
-          </ul>
+            <ul>
+              <li>C</li>
+              <li>C++</li>
+              <li>C#</li>
+              <li>Javascript</li>
+              <li>HTML/CSS</li>
+              <li>Python</li>
+              <li>R</li>
+              <li>React</li>
+              <li>Angular</li>
+              <li>Node.js</li>
+            </ul>
 
-          <p>...and that's just scratching the surface! If you feel we'd make a great team, don't hesitate to get in touch: <strong>[Insert Email Link Here]</strong></p>
+            <p>...and that's just scratching the surface! If you feel we'd make a great team, don't hesitate to get in touch: <div
+              style={{
+                textDecoration: 'underline',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'inline'
+              }}
+              onClick={() => window.location = 'mailto:joshslavin98@gmail.com'}
+            >
+              Contact Me!
+            </div></p>
 
-          <p>Some fun facts about me:</p>
-          <ul>
-            <li>Though self taught, I had a stint working in a modern restaurant as a Chef!</li>
-            <li>When I'm not behind the screen, you'll find me exploring hiking trails, cities or floating on my OneWheel.</li>
-            <li>I have a fiery passion (pun intended!) for blacksmithing and knife making, although it's been a while since I've been at the forge.</li>
-            <li>My favorite card game is Magic: The Gathering, which I've been playing for nearly two decades now.</li>
-          </ul>
-        </Lower>
-          </ContentContainer>
-        
+            <p>Some fun facts about me:</p>
+            <ul>
+              <li>Though self taught, I had a stint working in a modern restaurant as a Chef!</li>
+              <li>When I'm not behind the screen, you'll find me exploring hiking trails, cities or floating on my OneWheel.</li>
+              <li>I have a fiery passion (pun intended!) for blacksmithing and knife making, although it's been a while since I've been at the forge.</li>
+              <li>My favorite card game is Magic: The Gathering, which I've been playing for nearly two decades now.</li>
+            </ul>
+          </Lower>
+        </ContentContainer>
+
       </Popup>
 
     </div>

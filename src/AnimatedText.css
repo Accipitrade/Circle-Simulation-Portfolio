@@ -1,66 +1,31 @@
 .headshot {
-    scale: 50%;
-    margin: 0%;
-    padding: 0%;
-    position: relative;
-    border-radius: 3%;
+  scale: 100%;
+  margin: 0%;
+  padding: 0%;
+  position: relative;
+  border-radius: 3%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.popup * {
-    font-family: 'Brandon Grotesque', 'Franklin Gothic Medium';
-
+h1 {
+  font-size: calc(30px + (48 - 24) * ((100vw - 300px) / (1600 - 300)));
+  margin-bottom: calc(16px + (32 - 16) * ((100vw - 300px) / (1600 - 300)));
 }
 
-/* Base styles */
-.popup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Optional: If screen width gets too small, prevent the font from becoming tiny */
+@media (max-width: 300px) {
+  h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
   }
-  
-  .row {
-    display: flex;
-    width: 100%;
-  }
-  
-  .square {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%; /* Two squares so they take half the width each */
-    height: 150px; /* Assuming the height. Adjust accordingly. */
-    box-sizing: border-box;
-  }
-  
-  .bottom-rectangle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Full width of the parent */
-    height: 150px; /* Assuming the same height as squares. Adjust if needed. */
-    box-sizing: border-box;
-  }
-  
-  /* Media query for screens less than 500px */
-  @media (max-width: 500px) {
-    .image-square {
-      display: none; /* This will hide the image square */
-    }
-  
-    .square {
-      width: 100%; /* Takes full width since image is hidden */
-    }
-  }
-
-  
-
-
-
-.text-container {
-    margin-top: 480px;
 }
 
-.first-paragraph {
-    max-width: 300px;
+/* Optional: If screen width gets too large, prevent the font from becoming overly large */
+@media (min-width: 1600px) {
+  h1 {
+    font-size: 48px;
+    margin-bottom: 32px;
+  }
 }
-

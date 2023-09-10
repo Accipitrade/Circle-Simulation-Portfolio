@@ -3,7 +3,7 @@
   to {opacity: 1;}
 }
 
-.circle0, .circle1, .circle2, .circle3, .circle4 {
+.circle0, .circle1, .circle2, .circle3, .circle4, .circle5, .circle6, .circle7 {
   opacity: 0;
   animation-name: fadeIn;
   animation-timing-function: ease-in-out; /* ensure smooth fading */

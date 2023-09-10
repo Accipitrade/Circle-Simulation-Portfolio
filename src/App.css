@@ -12,6 +12,7 @@
   font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body, html {
   margin: 0;
@@ -54,4 +55,15 @@ h1{
 
 a:link, a:visited{
   color: #985f99;
+}
+
+.image {
+  scale: 100%;
+  margin: 0%;
+  padding: 0%;
+  position: relative;
+  border-radius: 3%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

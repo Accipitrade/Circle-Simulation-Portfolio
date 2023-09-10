@@ -5,6 +5,38 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import FrameQueue from './FrameQueue.js';
 import Popup from './Popup.js'
 import AnimatedText from './AnimatedText';
+import styled from 'styled-components';
+
+const ContentContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+
+`;
+
+const UpperLeft = styled.div`
+margin-top: 60px;
+flex: 1;
+padding: 20px;
+`;
+
+const UpperRight = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+flex: 1;
+padding: 20px;
+& > img {
+  max-width: 100%;
+}
+`;
+
+const Lower = styled.div`
+flex-basis: 100%;
+padding: 20px;
+`;
+
+
 
 function App() {
 
@@ -19,19 +51,19 @@ function App() {
     },
     {
       id: 1,
-      radius: 25,
+      radius: 35,
       position: { x: screenSize.current.width * 0.8, y: screenSize.current.height * 0.3 },
       velocity: { x: -500.5, y: 20 },
     },
     {
       id: 2,
-      radius: 30,
+      radius: 36,
       position: { x: screenSize.current.width * 0.6, y: screenSize.current.height * 0.6 },
       velocity: { x: -10.5, y: -14 },
     },
     {
       id: 3,
-      radius: 36,
+      radius: 44,
       position: { x: screenSize.current.width * 0.1, y: screenSize.current.height * 0.5 },
       velocity: { x: 0, y: -30 },
     },
@@ -40,7 +72,25 @@ function App() {
       radius: 58,
       position: { x: screenSize.current.width * 0.3, y: screenSize.current.height * 0.4 },
       velocity: { x: 40, y: 12 },
-    }
+    },
+    {
+      id: 5,
+      radius: 54,
+      position: { x: screenSize.current.width * 0.35, y: screenSize.current.height * 0.2 },
+      velocity: { x: -40, y: -12 },
+    },
+    {
+      id: 6,
+      radius: 50,
+      position: { x: screenSize.current.width * 0.8, y: screenSize.current.height * 0.1 },
+      velocity: { x: 50, y: 0 },
+    },
+    {
+      id: 7,
+      radius: 48,
+      position: { x: screenSize.current.width * 0.2, y: screenSize.current.height * 0.7},
+      velocity: { x: 10, y: -2 },
+    },
   ];
 
   const isPaused = useRef(false);
@@ -57,7 +107,8 @@ function App() {
   const [isOpen, setIsOpen] = useState(false); //used for controlling portfolio pop up
   const [contentID, setContentID] = useState(); //used for what content is displayed on the popup
   
-  
+
+
   //Add a frame's worth of position data for the mouse along with a timestamp to the FrameQueue.
   const PushFrameData = () => {
     const currentTimestamp = Date.now();

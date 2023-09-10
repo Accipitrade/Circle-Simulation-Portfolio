@@ -21,19 +21,35 @@ const PopupContainer = styled(motion.div)`
   background-color: lightblue;
   border-radius: 10px;
   position: relative;
-  max-width: 80%;
+  max-width: 50%;
   max-height: 80%;
   padding: 20px;
   overflow-y: auto;
   
   display: flex;
   flex-direction: column; /* Make it column to prevent stretch */
+  text-align: left;
   align-items: start;
 
-  @media (max-width: 500px) {
+  h2 {
+    font-family: 'Brandon Grotesque', sans-serif;
+    font-size: calc(20px + 2vmin);
+  }
+
+  p, li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: calc(14px + 1vmin);
+  }
+
+  @media (max-width: 600px) {
     .image {
       display: none;
     }
+    
+    h2, p, li {
+      text-align: center; /* Center align the text when the image is not displayed. */
+    }
+
   }
 `;
 
