@@ -6,6 +6,14 @@ import FrameQueue from './FrameQueue.js';
 import Popup from './Popup.js'
 import AnimatedText from './AnimatedText';
 import styled from 'styled-components';
+import bertLogo from './bert-logo.png'
+import cookingKingLogo from './cookingking-logo.PNG'
+import hitTraxLogo from './hittrax.png'
+import lobsterLogo from './lobsterproper-logo.PNG'
+import manaclysmLogo from './manaclysm-logo-small.png'
+import simchaLogo from './simcha-logo.PNG'
+import skaterFrogLogo from './SkaterFrog LogoC.png'
+import TTTLogo from './TTT-logo.PNG'
 
 const ContentContainer = styled.div`
 display: flex;
@@ -48,48 +56,56 @@ function App() {
       radius: 47,
       position: { x: screenSize.current.width * 0.2, y: screenSize.current.height * 0.3 },
       velocity: { x: 50, y: 12 },
+      image: hitTraxLogo
     },
     {
       id: 1,
-      radius: 35,
+      radius: 55,
       position: { x: screenSize.current.width * 0.8, y: screenSize.current.height * 0.3 },
       velocity: { x: -500.5, y: 20 },
+      image: manaclysmLogo
     },
     {
       id: 2,
-      radius: 36,
+      radius: 50,
       position: { x: screenSize.current.width * 0.6, y: screenSize.current.height * 0.6 },
       velocity: { x: -10.5, y: -14 },
+      image: cookingKingLogo
     },
     {
       id: 3,
       radius: 44,
       position: { x: screenSize.current.width * 0.1, y: screenSize.current.height * 0.5 },
       velocity: { x: 0, y: -30 },
+      image: skaterFrogLogo
     },
     {
       id: 4,
       radius: 58,
       position: { x: screenSize.current.width * 0.3, y: screenSize.current.height * 0.4 },
       velocity: { x: 40, y: 12 },
+      image: TTTLogo
     },
     {
       id: 5,
       radius: 54,
       position: { x: screenSize.current.width * 0.35, y: screenSize.current.height * 0.2 },
       velocity: { x: -40, y: -12 },
+      image: simchaLogo
     },
     {
       id: 6,
       radius: 50,
       position: { x: screenSize.current.width * 0.8, y: screenSize.current.height * 0.1 },
       velocity: { x: 50, y: 0 },
+      image: bertLogo
     },
     {
       id: 7,
-      radius: 48,
-      position: { x: screenSize.current.width * 0.2, y: screenSize.current.height * 0.7},
+      radius: 40,
+      position: { x: screenSize.current.width * 0.2, y: screenSize.current.height * 0.7 },
       velocity: { x: 10, y: -2 },
+      image: lobsterLogo
     },
   ];
 
@@ -106,7 +122,7 @@ function App() {
   const mouseClickUpID = useRef(0); //using this to store ID of circle that was click and dragged but after they let go (to assign velocity)
   const [isOpen, setIsOpen] = useState(false); //used for controlling portfolio pop up
   const [contentID, setContentID] = useState(); //used for what content is displayed on the popup
-  
+
 
 
   //Add a frame's worth of position data for the mouse along with a timestamp to the FrameQueue.
@@ -128,14 +144,14 @@ function App() {
   const updateMousePosition = (ev) => {
     let x, y;
     if (ev.type === 'touchmove' || ev.type === 'touchstart') {
-        x = ev.touches[0].clientX;
-        y = ev.touches[0].clientY;
+      x = ev.touches[0].clientX;
+      y = ev.touches[0].clientY;
     } else {
-        x = ev.clientX;
-        y = ev.clientY;
+      x = ev.clientX;
+      y = ev.clientY;
     }
     mousePosition.current = { x: x, y: y };
-};
+  };
 
   useEffect(() => {
     const updateScreenSize = () => {
@@ -145,15 +161,15 @@ function App() {
       };
     };
 
-    
+
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-          animationFrameID.current = requestAnimationFrame(animate);
+        animationFrameID.current = requestAnimationFrame(animate);
       } else {
-          cancelAnimationFrame(animationFrameID.current);
+        cancelAnimationFrame(animationFrameID.current);
       }
-  };
+    };
 
 
 
@@ -162,7 +178,7 @@ function App() {
 
     // To handle when the user tabs out
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     // Event listener to update on screen resize
     window.addEventListener('resize', updateScreenSize);
     // Mouse Position/Mobile Tap Position event listeners
@@ -182,9 +198,9 @@ function App() {
       window.removeEventListener('mouseup', OnMouseUp);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('touchstart', OnMouseDown);
-    window.removeEventListener('touchmove', updateMousePosition);
-    window.removeEventListener('touchcancel', OnMouseUp);
-    window.removeEventListener('touchend', OnMouseUp);
+      window.removeEventListener('touchmove', updateMousePosition);
+      window.removeEventListener('touchcancel', OnMouseUp);
+      window.removeEventListener('touchend', OnMouseUp);
     };
   }, []);
 
@@ -195,15 +211,15 @@ function App() {
   const timeStep = 0.025;
 
   const animate = useCallback(() => {
-    if(!isPaused.current){
+    if (!isPaused.current) {
       if (isDragging.current) {
         PushFrameData();
         //console.log("dragging circle: " + draggedCircle.current);
       }
-  
+
       setCircles((prevCircles) => {
         let newCircles = [...prevCircles];
-  
+
         // Calculate the maximum velocity magnitude among all circles
         let maxVelocityMagnitude = 0;
         prevCircles.forEach((circle) => {
@@ -212,37 +228,37 @@ function App() {
             maxVelocityMagnitude = velocityMagnitude;
           }
         });
-  
+
         // Calculate the number of steps needed for this frame
         const steps = Math.ceil(maxVelocityMagnitude * timeStep);
-  
+
         let collisionDetected = false;
         let dragCollisionID = 0; //this variable holds the ID of the circle that the dragged circle collided with
         let dragCollisionDetected = false;
-  
+
         for (let step = 0; step < steps; step++) {
           // Update positions for each time step
           newCircles = newCircles.map((circle) => {
             let newPosition = {};
             let newVelocity = {
-                x: circle.velocity.x * 0.98,
-                y: circle.velocity.y * 0.98,
-              };
-  
-              //if the user was dragging a circle and let go, transfer the mouse's velocity to the circle
-              //console.log(mouseClickUpID.current);
-            if(mouseClickedUp.current && circle.id === mouseClickUpID.current){
+              x: circle.velocity.x * 0.98,
+              y: circle.velocity.y * 0.98,
+            };
+
+            //if the user was dragging a circle and let go, transfer the mouse's velocity to the circle
+            //console.log(mouseClickUpID.current);
+            if (mouseClickedUp.current && circle.id === mouseClickUpID.current) {
               console.log("reached");
-                newVelocity = {
-                  x: compositeVelocity.current.x * 98,
-                  y: compositeVelocity.current.y * 98,
-                };
-                mouseClickedUp.current = false;
-                mouseClickUpID.current = '';
+              newVelocity = {
+                x: compositeVelocity.current.x * 98,
+                y: compositeVelocity.current.y * 98,
+              };
+              mouseClickedUp.current = false;
+              mouseClickUpID.current = '';
             }
             //if the user is dragging a circle and the circle's ID is the same as the dragged circle
             if (isDragging.current && circle.id === draggedCircle.current) {
-              
+
               //assign the mouse's position (with an offset) to the circle
               newPosition = { //no offset, because it causes some funky behavior
                 x: mousePosition.current.x,
@@ -255,7 +271,7 @@ function App() {
                 y: circle.position.y + newVelocity.y * timeStep,
               };
             }
-  
+
             // Check and resolve Circle-Wall collisions
             if (CheckCW(newPosition, circle.radius, screenSize.current.width, screenSize.current.height)) {
               //console.log("colliding with wall!");
@@ -264,15 +280,15 @@ function App() {
               newPosition.y = newPos.y;
               newVelocity = GetCWVel(newPosition, newVelocity, wallNormal);
             }
-  
+
             return {
               ...circle,
               position: newPosition,
               velocity: newVelocity,
             };
           });
-  
-         
+
+
           // Check and resolve collisions after each time step
           for (let i = 0; i < newCircles.length; i++) {
             for (let j = i + 1; j < newCircles.length; j++) {
@@ -294,7 +310,7 @@ function App() {
                   newCircles[j].position,
                   newCircles[j].radius
                 );
-  
+
                 let collisionVelocities = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
                 if (isDragging.current) {
                   if (i === draggedCircle.current) {
@@ -320,7 +336,7 @@ function App() {
                     newCircles[j].velocity
                   );
                 }
-  
+
                 if (isDragging.current) {
                   if (i === draggedCircle.current) {
                     newCircles[j].position = collisionPositions[1];
@@ -338,14 +354,14 @@ function App() {
                   newCircles[i].velocity = collisionVelocities[0];
                   newCircles[j].velocity = collisionVelocities[1];
                 }
-  
+
               }
             }
           }
-  
+
           // Check and resolve collisions a second time, ignoring the dragged circle collisions. 
           //this resolves multi-body collisions.
-  
+
           do {
             //console.log("recursion");
             collisionDetected = false;
@@ -356,7 +372,7 @@ function App() {
                 if (isDragging.current && (i === draggedCircle.current || j === draggedCircle.current)) {
                   continue;
                 }
-    
+
                 if (
                   //check collisions for two circles
                   CheckCC(
@@ -374,28 +390,28 @@ function App() {
                     newCircles[j].position,
                     newCircles[j].radius
                   );
-    
+
                   let collisionVelocities = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
-    
+
                   collisionVelocities = GetCCVel(
                     newCircles[i].position,
                     newCircles[i].velocity,
                     newCircles[j].position,
                     newCircles[j].velocity
                   );
-    
+
                   //set both position and velocity
                   newCircles[i].position = collisionPositions[0];
                   newCircles[j].position = collisionPositions[1];
                   newCircles[i].velocity = collisionVelocities[0];
                   newCircles[j].velocity = collisionVelocities[1];
-    
-                } 
+
+                }
               }
             }
           } while (collisionDetected);
-          
-          
+
+
           //checking circle-wall collisions a final time prevents circles from being pushed out of bounds from other collisions
           newCircles.forEach((circle) => {
             // Check and resolve Circle-Wall collisions
@@ -406,30 +422,30 @@ function App() {
               circle.velocity = GetCWVel(circle.position, circle.velocity, wallNormal);
             }
           });
-  
+
           //compare collided circle and dragged circle to make sure they don't overlap when the collided circle is in the corner
-          if(dragCollisionDetected){
-            if(isDragging.current){
+          if (dragCollisionDetected) {
+            if (isDragging.current) {
               let newPositions;
-              if(CheckCWTouch(newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius, screenSize.current.width, screenSize.current.height)){
+              if (CheckCWTouch(newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius, screenSize.current.width, screenSize.current.height)) {
                 //console.log("attempting to separate circle in corner.");
-                if(CheckCC(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius)){
+                if (CheckCC(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius)) {
                   newPositions = MoveCC(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, newCircles[dragCollisionID].position, newCircles[dragCollisionID].radius);
                   newCircles[draggedCircle.current].position = newPositions[0];
-                  if(CheckCW(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, screenSize.current.width, screenSize.current.height)){
+                  if (CheckCW(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, screenSize.current.width, screenSize.current.height)) {
                     newCircles[draggedCircle.current].position = MoveCW(newCircles[draggedCircle.current].position, newCircles[draggedCircle.current].radius, screenSize.current.width, screenSize.current.height);
                   }
                 }
               }
             }
           }
-          
+
         }
-  
+
         return newCircles;
       });
     }
-    
+
     animationFrameID.current = requestAnimationFrame(animate);
   }, []);
 
@@ -475,91 +491,224 @@ function App() {
     mouseClickTime.current = Date.now();
   }
 
-//triggered whenever the mouse lifts up
+  //triggered whenever the mouse lifts up
   const OnMouseUp = () => {
-    if(isDragging.current){
+    if (isDragging.current) {
       isDragging.current = false;
-    
-    //log time, was the click long or short?
-    if(Date.now() - mouseClickTime.current <= 200){
-      // It was a quick click
-      setContentID(draggedCircle.current);
-      draggedCircle.current = '';
-      isPaused.current = true;
-      OpenPopUp();
-    } else {
-      // It was a drag
-      compositeVelocity.current = FindCompositeVel(mouseFrameData.current.getframeQueue());
-      mouseClickedUp.current = true;
-      mouseClickUpID.current = draggedCircle.current;
-      draggedCircle.current = '';
+
+      //log time, was the click long or short?
+      if (Date.now() - mouseClickTime.current <= 200) {
+        // It was a quick click
+        setContentID(draggedCircle.current);
+        draggedCircle.current = '';
+        isPaused.current = true;
+        OpenPopUp();
+      } else {
+        // It was a drag
+        compositeVelocity.current = FindCompositeVel(mouseFrameData.current.getframeQueue());
+        mouseClickedUp.current = true;
+        mouseClickUpID.current = draggedCircle.current;
+        draggedCircle.current = '';
+      }
     }
-    }
-    
-}
-
-const OpenPopUp = () => {
-  setIsOpen(true)
-}
-
-const PortfolioContent = () => {
-  switch(contentID){
-    default:
-      return null;
-    case 0: //hittrax remote
-      return(
-        <div>
-
-        </div>
-      );
-    case 1: //manaclysm
-      return(
-        <div>
-          
-        </div>
-      );
-    case 2: //cooking king (coming soon)
-    return(
-      <div>
-        
-      </div>
-    );
-    case 3: //skaterfrog
-    return(
-      <div>
-        
-      </div>
-    );
-    case 4: //two turret terminator
-    return(
-      <div>
-        
-      </div>
-    );
-    case 5: //simcha website (coming soon) upscale israeli cuisine with small plates (do better josh)
-    return(
-      <div>
-        
-      </div>
-    );
-
-    //bert model for steam review analysis
-
-    //Lobster proper (coming soon) boston-based food truck and catering selling traditional and fresh takes on lobster rolls!
 
   }
-}
+
+  const OpenPopUp = () => {
+    setIsOpen(true)
+  }
+
+  const PortfolioContent = () => {
+    switch (contentID) {
+      default:
+        return null;
+      case 0: //hittrax remote
+        return (
+          <div>
+            <ContentContainer>
+              <UpperLeft>
+                <h2>HitTrax Remote</h2>
+                <p>A quick serving remote to access fast analytics without breaking away from the action</p>
+              </UpperLeft>
+              <UpperRight>
+              <iframe width="560" height="315" src="https://cdn.hittrax.com/content/corporate/video/Boston_com_hittrax_comp.mp4" title="HitTrax Video" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </UpperRight>
+
+              <Lower>
+                <p>HitTrax Remote was my assignment over the two summers I interned at InMotion Systems LLC. While HitTrax is a full baseball simulation attached to a proprietary camera, the remote is simply there to view session data quickly, without interrupting the users, coach, and spectators from the pitching/hitting action.</p>
+                <p>I walked into an existing framework that was mostly UI, which didn't even meet their needs. Really, I was building this app from the ground up.</p>
+                <p>This project was largely a solo effort. Over the course of the project, I:
+                  <ul>
+                    <li>Used Unity engine to build a multi-platform (Windows, Android, Apple) application</li>
+                    <li>Communicated with authentication servers for login access, TCP/UDP protocols for network communication between main application and remote</li>
+                    <li>Styled UI and screens for better user experience and more stat displays</li>
+                    <li>Prepped app for Google Play Store and Apple Store release</li>
+                  </ul>
+                </p>
+                <p>Working for HitTrax inspired a love of baseball I didn't even know I had (go Red Sox!). Please <a href='https://www.hittrax.com/' target="_blank">check out their website.</a></p>
+              </Lower>
+            </ContentContainer>
+          </div>
+        );
+      case 1: //manaclysm
+        return (
+          <div>
+            <ContentContainer>
+              <UpperLeft>
+              <h2>Manaclysm</h2>
+              <p>A Unity3D card game born out of the research for my MFA Thesis paper about immersion and immersive strategies.</p>
+              </UpperLeft>
+
+              <UpperRight>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/yZQiJfqCxxg?si=wgwZqwMGyEpZU13r" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </UpperRight>
+
+              <Lower>
+              <p>Manaclysm is a fantasy card game with a board, drawing elements from games like <a href="https://magic.wizards.com/en" target="_blank">Magic: the Gathering</a>, Chess, and <a href="https://store.steampowered.com/app/397060/Faeria/" target="_blank">Faeria</a>, but visually is reminiscent of an older era of games; <a href="https://oldschool.runescape.com/" target="_blank">Old School Runescape</a> and H.R. Giger's <a href="https://en.wikipedia.org/wiki/Dark_Seed_(video_game)" target="_blank">Dark Seed</a> come to mind</p>
+              <p>Play as General Dunbar, Master Tinker Taog or Mother Mycelium as you fight for dominion of the mana-laden planet of Ivo!</p>
+              <p>As team lead, I created the project, along with the majority of the programming infrastructure. This included lots of procedural animations, custom pathfinding, custom Unity inspector elements and tools, and much more. Over the course of a year and a half, I held sprint meetings and worked with 10+ undergraduate students to consolidate work.</p>
+              </Lower>
+            </ContentContainer>
+          </div>
+        );
+      case 2: //cooking king (coming soon)
+        return (
+          <div>
+            <ContentContainer>
+              <UpperLeft>
+              <h2>Cooking King! (Coming Soon)</h2>
+              <p>A Unity3D game time-mania game to complete recipes with your smartphone's gyroscope!</p>
+              </UpperLeft>
+
+              <UpperRight>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/pZi1aWbS2NY?si=J7O_wDAr8-0avQMb" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </UpperRight>
+
+              <Lower>
+              <p>I started Cooking King! in my first year of my MFA after seeing how much fun a <a target="_blank" href='https://www.youtube.com/watch?v=0_kP4h_3ims'>Mario Party minigame</a> was, and wanting to create a full experience from it. I've always loved cooking, so this felt like a very natural progression of development for me.</p>
+              <p>Combined with my Year 1 research in mobile game advertisement and microtransactions, I initially scoped Cooking King to feature coins and skins with a robust shop. However, given the popularity of data analytics and mining, I have since decided to use Cooking King! to focus on that.</p>
+              <p>This game is still in development. Check back soon!</p>
+              </Lower>
+            </ContentContainer>
+          </div>
+        );
+      case 3: //skaterfrog
+        return (
+          <div>
+            <ContentContainer>
+              <UpperLeft>
+              <h2>Skaterfrog</h2>
+              <p>A skateboarding frog's adventure, made by Gnarvana Studio, a child of Becker College's Accipiter Studios.</p>
+              </UpperLeft>
+
+              <UpperRight>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/opQhuGUkeQo?si=1v86X1nJb8gOpJLH" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </UpperRight>
+
+              <Lower>
+              <p>Skaterfrog is a fast-paced 2D platformer about a frog on a mission to reach froggy skateboarding heaven: Gnarvana!</p>
+              <p>One of our original goals for Skaterfrog was to partner with Microsoft and put Skaterfrog on the (at the time) new Xbox Creator program. After some major scope revisions, however, we ultimately decided not to, but one feature we kept was a controller, rather than keyboard, based input.</p>
+              <p>Everyone on the Skaterfrog team participated in designing the game to some extent: our meetings were often and lengthy. In terms of my programming contributions, I
+                <ul>
+                  <li>Mapped joysticks and buttons, as well as combinations, to "tricks" the player can perform to traverse the play area</li>
+                  <li>Implemented grind rails and speed ramp in accordance with our custom object detection and physics systems</li>
+                  <li>Created object pooling systems for custom Unity tool and in-game resource management</li>
+                  <li>Used custom Unity tool to create curated, quasi-random level chunks.</li>
+                </ul>
+              </p>
+
+              <p>Skaterfrog was truly a labor of love and everyone who worked on it can attest to the long hours we spent (for many of us, this was our first true experience with a full game development lifecycle) and the genuine surprise and gratitude we felt when it went viral on Twitch. <a href="https://store.steampowered.com/app/1127470/Skater_Frog/" target="_blank">Please check it out on Steam!</a></p>
+
+              </Lower>
+            </ContentContainer>
+          </div>
+        );
+      case 4: //two turret terminator
+        return (
+          <div>
+            <ContentContainer>
+              <UpperLeft>
+              <h2>Two Turret Terminator</h2>
+              <p>A 48-hour Game Jam Unity game from the theme "Quarter Eater"</p>
+              </UpperLeft>
+
+              <UpperRight>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/qFkM9NHHVug?si=yfOR_nFk47Qz5EBs" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </UpperRight>
+
+              <Lower>
+              <p>Two Turret Terminator is an arcade cabinet style game made for Becker College IGDA chapter's 2017 48-hour game jam.</p>
+              <p>Our team was comprised of myself and another programmer, two artists and one audio specialist. My role as a programmer included creating the two-turret laser system, the AI of the UFO enemies, and the animations. Check out the <a href='https://itch.io/jam/igda-becker-arcade-jam/results' target='_blank'>game jam submission</a> and the <a href='https://anthony-woo.itch.io/two-turret-terminator' target='_blank'>full game release!</a></p>
+              </Lower>
+            </ContentContainer>
+          </div>
+        );
+      case 5: //simcha website (coming soon) upscale israeli cuisine with small plates (do better josh)
+        return (
+          <div>
+            <ContentContainer>
+              <UpperLeft>
+              <h2>Simcha Restaurant Website</h2>
+              </UpperLeft>
+
+              <UpperRight>
+
+              </UpperRight>
+
+              <Lower>
+              <p>More info on this coming soon!</p>
+              </Lower>
+            </ContentContainer>
+          </div>
+        );
+      case 6: //bert model for steam review analysis
+        return (
+          <ContentContainer>
+            <UpperLeft>
+            <h2>Fine-Tuned Bert Model for Steam Review Analysis</h2>
+            </UpperLeft>
+
+            <UpperRight>
+
+            </UpperRight>
+
+            <Lower>
+            <p>More info on this coming soon!</p>
+            </Lower>
+          </ContentContainer>
+        );
+      case 7:  //Lobster proper (coming soon) boston-based food truck and catering selling traditional and fresh takes on lobster rolls!
+        return (
+          <ContentContainer>
+            <UpperLeft>
+            <h2>Lobster Proper Website (Coming Soon)</h2>
+            </UpperLeft>
+
+            <UpperRight>
+
+            </UpperRight>
+
+            <Lower>
+            <p>More info on this coming soon!</p>
+            </Lower>
+          </ContentContainer>
+        );
+
+     
+
+    }
+  }
 
 
   return (
     <div className='app-container'>
 
-      <Popup isOpen={isOpen} setIsOpen={ () => {setIsOpen(false); isPaused.current = false;}}>
+      <Popup isOpen={isOpen} setIsOpen={() => { setIsOpen(false); isPaused.current = false; }}>
         {PortfolioContent()}
       </Popup>
 
       <div className="center-container">
-        <AnimatedText isPaused={isPaused}/>
+        <AnimatedText isPaused={isPaused} />
       </div>
       {circles.map(circle => (
         <Circle className={`circle${circle.id}`}
@@ -568,6 +717,7 @@ const PortfolioContent = () => {
           radius={circle.radius}
           pos={circle.position}
           onClick={OnMouseClick}
+          image={circle.image}
         />
       ))}
     </div>

@@ -104,7 +104,7 @@ const AnimatedText = ({ isPaused }) => {
         <ContentContainer>
           <UpperLeft>
             <h2>A little about me:</h2>
-            <p> I'm a programmer and artist who thrives on crafting one-of-a-kind experiences. While I definitely have a soft spot for AI, VR, and projects grounded in math and physics, what truly drives me is creative problem solving.</p>
+            <p> I'm a boston-based programmer and artist who thrives on crafting one-of-a-kind experiences. While I definitely have a soft spot for AI, VR, and projects grounded in math and physics, what truly drives me is creative problem solving.</p>
           </UpperLeft>
 
           <UpperRight className="image">

@@ -31,7 +31,7 @@ const PopupContainer = styled(motion.div)`
   text-align: left;
   align-items: start;
 
-  h2 {
+  h2, h4 {
     font-family: 'Brandon Grotesque', sans-serif;
     font-size: calc(20px + 2vmin);
   }
