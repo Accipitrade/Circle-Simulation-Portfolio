@@ -240,9 +240,22 @@ function App() {
           // Update positions for each time step
           newCircles = newCircles.map((circle) => {
             let newPosition = {};
+
+            //update velocities. make 'em wiggle!
+            let tempX = circle.velocity.x * 0.98;
+            let tempY = circle.velocity.y * 0.98;
+            if (Math.abs(tempX) < 2) {
+              let sign = Math.round(Math.random()) * 2 - 1;
+              tempX = sign * (Math.random() * 10)
+            }
+
+            if (Math.abs(tempY) < 2) {
+              let sign = Math.round(Math.random()) * 2 - 1;
+              tempY = sign * (Math.random() * 10)
+            }
             let newVelocity = {
-              x: circle.velocity.x * 0.98,
-              y: circle.velocity.y * 0.98,
+              x: tempX,
+              y: tempY
             };
 
             //if the user was dragging a circle and let go, transfer the mouse's velocity to the circle
@@ -497,7 +510,7 @@ function App() {
       isDragging.current = false;
 
       //log time, was the click long or short?
-      if (Date.now() - mouseClickTime.current <= 200) {
+      if (Date.now() - mouseClickTime.current <= 150) {
         // It was a quick click
         setContentID(draggedCircle.current);
         draggedCircle.current = '';
@@ -530,8 +543,8 @@ function App() {
                 <h2>HitTrax Remote</h2>
                 <p>A quick serving remote to access fast analytics without breaking away from the action</p>
               </UpperLeft>
-              <UpperRight>
-              <iframe width="560" height="315" src="https://cdn.hittrax.com/content/corporate/video/Boston_com_hittrax_comp.mp4" title="HitTrax Video" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <UpperRight className='video'>
+                <iframe width="50%" height="30%" src="https://cdn.hittrax.com/content/corporate/video/Boston_com_hittrax_comp.mp4" title="HitTrax Video" frameborder="0" allow="accelerometer; autoplay=false; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
@@ -555,18 +568,18 @@ function App() {
           <div>
             <ContentContainer>
               <UpperLeft>
-              <h2>Manaclysm</h2>
-              <p>A Unity3D card game born out of the research for my MFA Thesis paper about immersion and immersive strategies.</p>
+                <h2>Manaclysm</h2>
+                <p>A Unity3D card game born out of the research for my MFA Thesis paper about immersion and immersive strategies.</p>
               </UpperLeft>
 
-              <UpperRight>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/yZQiJfqCxxg?si=wgwZqwMGyEpZU13r" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <UpperRight className='video'>
+                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/yZQiJfqCxxg?si=wgwZqwMGyEpZU13r" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
-              <p>Manaclysm is a fantasy card game with a board, drawing elements from games like <a href="https://magic.wizards.com/en" target="_blank">Magic: the Gathering</a>, Chess, and <a href="https://store.steampowered.com/app/397060/Faeria/" target="_blank">Faeria</a>, but visually is reminiscent of an older era of games; <a href="https://oldschool.runescape.com/" target="_blank">Old School Runescape</a> and H.R. Giger's <a href="https://en.wikipedia.org/wiki/Dark_Seed_(video_game)" target="_blank">Dark Seed</a> come to mind</p>
-              <p>Play as General Dunbar, Master Tinker Taog or Mother Mycelium as you fight for dominion of the mana-laden planet of Ivo!</p>
-              <p>As team lead, I created the project, along with the majority of the programming infrastructure. This included lots of procedural animations, custom pathfinding, custom Unity inspector elements and tools, and much more. Over the course of a year and a half, I held sprint meetings and worked with 10+ undergraduate students to consolidate work.</p>
+                <p>Manaclysm is a fantasy card game with a board, drawing elements from games like <a href="https://magic.wizards.com/en" target="_blank">Magic: the Gathering</a>, Chess, and <a href="https://store.steampowered.com/app/397060/Faeria/" target="_blank">Faeria</a>, but visually is reminiscent of an older era of games; <a href="https://oldschool.runescape.com/" target="_blank">Old School Runescape</a> and H.R. Giger's <a href="https://en.wikipedia.org/wiki/Dark_Seed_(video_game)" target="_blank">Dark Seed</a> come to mind</p>
+                <p>Play as General Dunbar, Master Tinker Taog or Mother Mycelium as you fight for dominion of the mana-laden planet of Ivo!</p>
+                <p>As team lead, I created the project, along with the majority of the programming infrastructure. This included lots of procedural animations, custom pathfinding, custom Unity inspector elements and tools, and much more. Over the course of a year and a half, I held sprint meetings and worked with 10+ undergraduate students to consolidate work.</p>
               </Lower>
             </ContentContainer>
           </div>
@@ -576,18 +589,18 @@ function App() {
           <div>
             <ContentContainer>
               <UpperLeft>
-              <h2>Cooking King! (Coming Soon)</h2>
-              <p>A Unity3D game time-mania game to complete recipes with your smartphone's gyroscope!</p>
+                <h2>Cooking King! (Coming Soon)</h2>
+                <p>A Unity3D game time-mania game to complete recipes with your smartphone's gyroscope!</p>
               </UpperLeft>
 
-              <UpperRight>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/pZi1aWbS2NY?si=J7O_wDAr8-0avQMb" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <UpperRight className='video'>
+                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/pZi1aWbS2NY?si=J7O_wDAr8-0avQMb" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
-              <p>I started Cooking King! in my first year of my MFA after seeing how much fun a <a target="_blank" href='https://www.youtube.com/watch?v=0_kP4h_3ims'>Mario Party minigame</a> was, and wanting to create a full experience from it. I've always loved cooking, so this felt like a very natural progression of development for me.</p>
-              <p>Combined with my Year 1 research in mobile game advertisement and microtransactions, I initially scoped Cooking King to feature coins and skins with a robust shop. However, given the popularity of data analytics and mining, I have since decided to use Cooking King! to focus on that.</p>
-              <p>This game is still in development. Check back soon!</p>
+                <p>I started Cooking King! in my first year of my MFA after seeing how much fun a <a target="_blank" href='https://www.youtube.com/watch?v=0_kP4h_3ims'>Mario Party minigame</a> was, and wanting to create a full experience from it. I've always loved cooking, so this felt like a very natural progression of development for me.</p>
+                <p>Combined with my Year 1 research in mobile game advertisement and microtransactions, I initially scoped Cooking King to feature coins and skins with a robust shop. However, given the popularity of data analytics and mining, I have since decided to use Cooking King! to focus on that.</p>
+                <p>This game is still in development. Check back soon!</p>
               </Lower>
             </ContentContainer>
           </div>
@@ -597,27 +610,27 @@ function App() {
           <div>
             <ContentContainer>
               <UpperLeft>
-              <h2>Skaterfrog</h2>
-              <p>A skateboarding frog's adventure, made by Gnarvana Studio, a child of Becker College's Accipiter Studios.</p>
+                <h2>Skaterfrog</h2>
+                <p>A skateboarding frog's adventure, made by Gnarvana Studio, a child of Becker College's Accipiter Studios.</p>
               </UpperLeft>
 
-              <UpperRight>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/opQhuGUkeQo?si=1v86X1nJb8gOpJLH" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <UpperRight className='video'>
+                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/opQhuGUkeQo?si=1v86X1nJb8gOpJLH" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
-              <p>Skaterfrog is a fast-paced 2D platformer about a frog on a mission to reach froggy skateboarding heaven: Gnarvana!</p>
-              <p>One of our original goals for Skaterfrog was to partner with Microsoft and put Skaterfrog on the (at the time) new Xbox Creator program. After some major scope revisions, however, we ultimately decided not to, but one feature we kept was a controller, rather than keyboard, based input.</p>
-              <p>Everyone on the Skaterfrog team participated in designing the game to some extent: our meetings were often and lengthy. In terms of my programming contributions, I
-                <ul>
-                  <li>Mapped joysticks and buttons, as well as combinations, to "tricks" the player can perform to traverse the play area</li>
-                  <li>Implemented grind rails and speed ramp in accordance with our custom object detection and physics systems</li>
-                  <li>Created object pooling systems for custom Unity tool and in-game resource management</li>
-                  <li>Used custom Unity tool to create curated, quasi-random level chunks.</li>
-                </ul>
-              </p>
+                <p>Skaterfrog is a fast-paced 2D platformer about a frog on a mission to reach froggy skateboarding heaven: Gnarvana!</p>
+                <p>One of our original goals for Skaterfrog was to partner with Microsoft and put Skaterfrog on the (at the time) new Xbox Creator program. After some major scope revisions, however, we ultimately decided not to, but one feature we kept was a controller, rather than keyboard, based input.</p>
+                <p>Everyone on the Skaterfrog team participated in designing the game to some extent: our meetings were often and lengthy. In terms of my programming contributions, I
+                  <ul>
+                    <li>Mapped joysticks and buttons, as well as combinations, to "tricks" the player can perform to traverse the play area</li>
+                    <li>Implemented grind rails and speed ramp in accordance with our custom object detection and physics systems</li>
+                    <li>Created object pooling systems for custom Unity tool and in-game resource management</li>
+                    <li>Used custom Unity tool to create curated, quasi-random level chunks.</li>
+                  </ul>
+                </p>
 
-              <p>Skaterfrog was truly a labor of love and everyone who worked on it can attest to the long hours we spent (for many of us, this was our first true experience with a full game development lifecycle) and the genuine surprise and gratitude we felt when it went viral on Twitch. <a href="https://store.steampowered.com/app/1127470/Skater_Frog/" target="_blank">Please check it out on Steam!</a></p>
+                <p>Skaterfrog was truly a labor of love and everyone who worked on it can attest to the long hours we spent (for many of us, this was our first true experience with a full game development lifecycle) and the genuine surprise and gratitude we felt when it went viral on Twitch. <a href="https://store.steampowered.com/app/1127470/Skater_Frog/" target="_blank">Please check it out on Steam!</a></p>
 
               </Lower>
             </ContentContainer>
@@ -628,17 +641,17 @@ function App() {
           <div>
             <ContentContainer>
               <UpperLeft>
-              <h2>Two Turret Terminator</h2>
-              <p>A 48-hour Game Jam Unity game from the theme "Quarter Eater"</p>
+                <h2>Two Turret Terminator</h2>
+                <p>A 48-hour Game Jam Unity game from the theme "Quarter Eater"</p>
               </UpperLeft>
 
-              <UpperRight>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/qFkM9NHHVug?si=yfOR_nFk47Qz5EBs" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <UpperRight className='video'>
+                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/qFkM9NHHVug?si=yfOR_nFk47Qz5EBs" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
-              <p>Two Turret Terminator is an arcade cabinet style game made for Becker College IGDA chapter's 2017 48-hour game jam.</p>
-              <p>Our team was comprised of myself and another programmer, two artists and one audio specialist. My role as a programmer included creating the two-turret laser system, the AI of the UFO enemies, and the animations. Check out the <a href='https://itch.io/jam/igda-becker-arcade-jam/results' target='_blank'>game jam submission</a> and the <a href='https://anthony-woo.itch.io/two-turret-terminator' target='_blank'>full game release!</a></p>
+                <p>Two Turret Terminator is an arcade cabinet style game made for Becker College IGDA chapter's 2017 48-hour game jam.</p>
+                <p>Our team was comprised of myself and another programmer, two artists and one audio specialist. My role as a programmer included creating the two-turret laser system, the AI of the UFO enemies, and the animations. Check out the <a href='https://itch.io/jam/igda-becker-arcade-jam/results' target='_blank'>game jam submission</a> and the <a href='https://anthony-woo.itch.io/two-turret-terminator' target='_blank'>full game release!</a></p>
               </Lower>
             </ContentContainer>
           </div>
@@ -648,15 +661,15 @@ function App() {
           <div>
             <ContentContainer>
               <UpperLeft>
-              <h2>Simcha Restaurant Website</h2>
+                <h2>Simcha Restaurant Website</h2>
               </UpperLeft>
 
-              <UpperRight>
+              <UpperRight className='image'>
 
               </UpperRight>
 
               <Lower>
-              <p>More info on this coming soon!</p>
+                <p>More info on this coming soon!</p>
               </Lower>
             </ContentContainer>
           </div>
@@ -665,15 +678,15 @@ function App() {
         return (
           <ContentContainer>
             <UpperLeft>
-            <h2>Fine-Tuned Bert Model for Steam Review Analysis</h2>
+              <h2>Fine-Tuned Bert Model for Steam Review Analysis</h2>
             </UpperLeft>
 
-            <UpperRight>
+            <UpperRight className='image'>
 
             </UpperRight>
 
             <Lower>
-            <p>More info on this coming soon!</p>
+              <p>More info on this coming soon!</p>
             </Lower>
           </ContentContainer>
         );
@@ -681,24 +694,20 @@ function App() {
         return (
           <ContentContainer>
             <UpperLeft>
-            <h2>Lobster Proper Website (Coming Soon)</h2>
+              <h2>Lobster Proper Website (Coming Soon)</h2>
             </UpperLeft>
 
-            <UpperRight>
+            <UpperRight className='image'>
 
             </UpperRight>
 
             <Lower>
-            <p>More info on this coming soon!</p>
+              <p>More info on this coming soon!</p>
             </Lower>
           </ContentContainer>
         );
-
-     
-
     }
   }
-
 
   return (
     <div className='app-container'>

@@ -42,7 +42,7 @@ const PopupContainer = styled(motion.div)`
   }
 
   @media (max-width: 600px) {
-    .image {
+    .image, .video {
       display: none;
     }
     
