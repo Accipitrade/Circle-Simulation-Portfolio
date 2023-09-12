@@ -22,7 +22,7 @@ const PopupContainer = styled(motion.div)`
   border-radius: 10px;
   position: relative;
   max-width: 50%;
-  max-height: 80%;
+  max-height: 75%;
   padding: 20px;
   overflow-y: auto;
   

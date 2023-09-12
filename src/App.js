@@ -537,14 +537,14 @@ function App() {
         return null;
       case 0: //hittrax remote
         return (
-          <div>
+          <div >
             <ContentContainer>
               <UpperLeft>
                 <h2>HitTrax Remote</h2>
                 <p>A quick serving remote to access fast analytics without breaking away from the action</p>
               </UpperLeft>
               <UpperRight className='video'>
-                <iframe width="50%" height="30%" src="https://cdn.hittrax.com/content/corporate/video/Boston_com_hittrax_comp.mp4" title="HitTrax Video" frameborder="0" allow="accelerometer; autoplay=false; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://cdn.hittrax.com/content/corporate/video/Boston_com_hittrax_comp.mp4" title="HitTrax Video" frameborder="0" allow="accelerometer; autoplay=false; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
@@ -573,7 +573,7 @@ function App() {
               </UpperLeft>
 
               <UpperRight className='video'>
-                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/yZQiJfqCxxg?si=wgwZqwMGyEpZU13r" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="70%" height="40%" src="https://www.youtube.com/embed/yZQiJfqCxxg?si=wgwZqwMGyEpZU13r" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
@@ -594,7 +594,7 @@ function App() {
               </UpperLeft>
 
               <UpperRight className='video'>
-                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/pZi1aWbS2NY?si=J7O_wDAr8-0avQMb" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="70%" height="40%" src="https://www.youtube.com/embed/pZi1aWbS2NY?si=J7O_wDAr8-0avQMb" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
@@ -615,7 +615,7 @@ function App() {
               </UpperLeft>
 
               <UpperRight className='video'>
-                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/opQhuGUkeQo?si=1v86X1nJb8gOpJLH" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="70%" height="40%" src="https://www.youtube.com/embed/opQhuGUkeQo?si=1v86X1nJb8gOpJLH" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
@@ -646,7 +646,7 @@ function App() {
               </UpperLeft>
 
               <UpperRight className='video'>
-                <iframe width="50%" height="30%" src="https://www.youtube.com/embed/qFkM9NHHVug?si=yfOR_nFk47Qz5EBs" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="70%" height="40%" src="https://www.youtube.com/embed/qFkM9NHHVug?si=yfOR_nFk47Qz5EBs" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </UpperRight>
 
               <Lower>
@@ -712,7 +712,7 @@ function App() {
   return (
     <div className='app-container'>
 
-      <Popup isOpen={isOpen} setIsOpen={() => { setIsOpen(false); isPaused.current = false; }}>
+      <Popup className="popup" isOpen={isOpen} setIsOpen={() => { setIsOpen(false); isPaused.current = false; }}>
         {PortfolioContent()}
       </Popup>
 
