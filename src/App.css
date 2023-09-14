@@ -57,6 +57,10 @@ a:link, a:visited{
   color: #985f99;
 }
 
+h1, a:link, a:visited{
+  margin: 0px;
+}
+
 .image {
   scale: 100%;
   margin: 0%;
