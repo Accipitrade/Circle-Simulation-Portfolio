@@ -80,6 +80,8 @@ const AnimatedText = ({ isPaused }) => {
     ['This page is a full physics simulation. Have fun!'],
   ];
 
+  
+
   let cumulativeDelay = 0;
 
   return (
@@ -87,17 +89,16 @@ const AnimatedText = ({ isPaused }) => {
       {sentences.map((chunks, i) => {
         const renderedChunks = chunks.map((chunk, j) => {
           const chunkProps = typeof chunk === 'object' ? chunk : { chunk };
-          const chunkDelay = cumulativeDelay;
-          cumulativeDelay += 1.2; // Increment delay for next chunk
-          return <FadeInChunk key={j} {...chunkProps} delay={chunkDelay} />;
+          return <FadeInChunk key={j} {...chunkProps} delay={cumulativeDelay} />;
         });
 
+        cumulativeDelay += .9; // Adjust this value to control the delay between entire sentences
         return (
           <h1 key={i} style={{ userSelect: 'none' }}>
             {renderedChunks}
           </h1>
         );
-      })}
+      })}  
 
       <Popup isOpen={isPopupOpen}
         setIsOpen={() => { setPopupOpen(false); isPaused.current = false; }}>
