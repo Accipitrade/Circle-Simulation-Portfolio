@@ -73,7 +73,7 @@ const AnimatedText = ({ isPaused }) => {
   const sentences = [
     ['Hey!'],
     ["I'm Josh Slavin"],
-    ["I'm a Software Engineer and Game Developer"],
+    ["I'm a Full Stack and Game Developer"],
     ['Click', { chunk: 'here', isLink: true, onClick: () => { setPopupOpen(true); isPaused.current = true; } }, 'to learn more about me'],
     ['and', { chunk: 'here', isLink: true, href: resume }, 'to view my full resume.'],
     ['Or,', 'click a circle to find out more about my projects.'],
