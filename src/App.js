@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import bertLogo from './bert-logo.png'
 import cookingKingLogo from './cookingking-logo.PNG'
 import hitTraxLogo from './hittrax.png'
-import lobsterLogo from './lobsterproper-logo.PNG'
+import yumeLogo from './yumelogo.png'
 import manaclysmLogo from './manaclysm-logo-small.png'
 import simchaLogo from './simcha-logo.PNG'
 import skaterFrogLogo from './SkaterFrog LogoC.png'
@@ -105,7 +105,7 @@ function App() {
       radius: 40,
       position: { x: screenSize.current.width * 0.2, y: screenSize.current.height * 0.7 },
       velocity: { x: 10, y: -2 },
-      image: lobsterLogo
+      image: yumeLogo
     },
   ];
 
@@ -668,7 +668,8 @@ function App() {
               </UpperRight>
 
               <Lower>
-                <p>More info on this coming soon!</p>
+                <p>An upscale restaurant featuring fresh and modern takes on Israeli cuisine. Check them out <a target="_blank" href='https://helpful-narwhal-03ecf3.netlify.app/'>here!</a></p>
+                <p>This website comes complete with an auto-mailer for contact, a custom editable pop-up message, auto-updating menu system, and more!</p>
               </Lower>
             </ContentContainer>
           </div>
@@ -685,16 +686,16 @@ function App() {
             </UpperRight>
 
             <Lower>
-              <p>For a class at BU, I fine-tuned a BERT model on <a>Steam</a> game reviews I caputed from <a>Aesuli's Steam Crawler</a>. The newly-tuned BERT then performed a sentiment analysis of different reviews (were they positive of negative?) as well as finding the "strength" of the assessment.</p>
-              <p>Using R, I created graphs based on the resulting data. Feel free to look through <a>my code</a> and generate the graphs for yourself!</p>
+              <p>For a class at BU, I fine-tuned a BERT model on <a>Steam</a> game reviews I caputed from <a target="_blank" href='https://github.com/aesuli/steam-crawler'>Aesuli's Steam Crawler</a>. The newly-tuned BERT then performed a sentiment analysis of different reviews (were they positive of negative?) as well as finding the "strength" of the assessment.</p>
+              <p>Using R, I created graphs based on the resulting data. Feel free to look through <a target="_blank" href='https://github.com/Accipitrade/steam-crawler'>my code</a> and generate the graphs for yourself!</p>
             </Lower>
           </ContentContainer>
         );
-      case 7:  //Lobster proper (coming soon) boston-based food truck and catering selling traditional and fresh takes on lobster rolls!
+      case 7: 
         return (
           <ContentContainer>
             <UpperLeft>
-              <h2>Lobster Proper Website (Coming Soon)</h2>
+              <h2>Yume Wo Katare Website</h2>
             </UpperLeft>
 
             <UpperRight className='image'>
@@ -702,7 +703,8 @@ function App() {
             </UpperRight>
 
             <Lower>
-              <p>More info on this coming soon!</p>
+              <p>An ecclectic "dream workshop" focused on sharing and achieving one's dreams by eating bowls of ramen.</p>
+              <p>This non-traditional restaurant deserved a website that matched the unique vibe they give off. I focused on an intuitive-first design to leave the restaurant shrouded in mystique, but still allow visitors to use their inherent navigation skills to find and disseminate information on the website quickly. Please check them out <a target="_blank" href='https://timely-peony-6bfdc2.netlify.app/'>here!</a></p>
             </Lower>
           </ContentContainer>
         );

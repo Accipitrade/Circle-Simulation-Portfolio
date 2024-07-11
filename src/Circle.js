@@ -27,7 +27,7 @@ function Circle({ id, radius, pos, onClick, image }) {
       }}
     onTapStart={() => {onClick(id);}}
     >
-      <img src={image} alt="" draggable="false" style={{ borderRadius: (id === 0 || id === 4) ? '100%' : '0%', width: '80%', height: '80%', objectFit: 'contain'}} />
+      <img src={image} alt="" draggable="false" style={{ borderRadius: '100%', width: '80%', height: '80%', objectFit: 'contain'}} />
     </motion.div>
   );
 }
