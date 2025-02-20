@@ -13,7 +13,7 @@ import yumeLogo from './yumelogo.png'
 import manaclysmLogo from './manaclysm-logo-small.png'
 import simchaLogo from './simcha-logo.PNG'
 import skaterFrogLogo from './SkaterFrog LogoC.png'
-import TTTLogo from './TTT-logo.PNG'
+import MurdeerLogo from './m.png'
 
 const ContentContainer = styled.div`
 display: flex;
@@ -84,7 +84,7 @@ function App() {
       radius: 58,
       position: { x: screenSize.current.width * 0.3, y: screenSize.current.height * 0.4 },
       velocity: { x: 40, y: 12 },
-      image: TTTLogo
+      image: MurdeerLogo
     },
     {
       id: 5,
@@ -640,17 +640,14 @@ function App() {
           <div>
             <ContentContainer>
               <UpperLeft>
-                <h2>Two Turret Terminator</h2>
-                <p>A 48-hour Game Jam Unity game from the theme "Quarter Eater"</p>
+                <h2>Murdeer</h2>
+                <p>A game made in 10 days for The Big Mode Game Jam with the theme "power"</p>
               </UpperLeft>
 
-              <UpperRight className='video'>
-                <iframe width="70%" height="40%" src="https://www.youtube.com/embed/qFkM9NHHVug?si=yfOR_nFk47Qz5EBs" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </UpperRight>
-
               <Lower>
-                <p>Two Turret Terminator is an arcade cabinet style game made for Becker College IGDA chapter's 2017 48-hour game jam.</p>
-                <p>Our team was comprised of myself and another programmer, two artists and one audio specialist. My role as a programmer included creating the two-turret laser system, the AI of the UFO enemies, and the animations. Check out the <a href='https://itch.io/jam/igda-becker-arcade-jam/results' target='_blank'>game jam submission</a> and the <a href='https://anthony-woo.itch.io/two-turret-terminator' target='_blank'>full game release!</a></p>
+                <p>Murdeer is a silly, high-octane, fast paced first-person shooter where you play as a Deer escaping an offensive RnD laboratory using a stolen PowerGun. Build a ridiculous weapon, buck into enemies, and meet a special friend along the way!</p>
+                <p>Our team comprised 4 people, myself as the Team Lead/Programmer, another programmer, a digital artist, and an audio technician. My role included ensuring we had a finished product for the end of the jam, as well as implementing algorithmic A* pathfinding, enemy AI, animations, and level design. Check out the <a href='https://itch.io/jam/bigmode-game-jam-2025/rate/3298526' target='_blank'>game jam submission</a>(we ranked #83 in fun out of 831 entries!) and the <a href='https://accipitrade.itch.io/murdeer' target='_blank'>full game jam release!</a></p>
+                <p>The team truly loved working on Murdeer, and following its positive reception, we plan on having a full launch on steam in the coming months!</p>
               </Lower>
             </ContentContainer>
           </div>
