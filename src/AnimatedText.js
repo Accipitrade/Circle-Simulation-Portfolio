@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Popup from './Popup'; 
-import resume from './JS_RESUME_2024-4.pdf';
+import resume from './JS_RESUME.pdf';
 import pic from './headshot.png';
 import './AnimatedText.css';
 import styled from 'styled-components';
