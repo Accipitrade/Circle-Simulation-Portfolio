@@ -113,8 +113,9 @@ const AnimatedText = ({ isPaused }) => {
           </UpperRight>
 
           <Lower>
-            <p>My academic journey began at Becker College, where I achieved both my Bachelor's and Master's of Fine Arts in Interactive Media and Design by 2021. During and out of college, I dove into the freelance world, working on multiple game titles featured in this portfolio. Yet, the desire to further hone my skills brought me back to the academic world. As of now, I'm studying at Boston University and am currently enrolled in their Graduate Certification program -- which I am eagerly looking forward to wrapping up this December!</p>
+            <p>My academic journey began at Becker College, where I achieved both my Bachelor's and Master's of Fine Arts in Interactive Media and Design by 2021. During and out of college, I dove into the freelance world, working on multiple game titles featured in this portfolio. Yet, the desire to further hone my skills brought me back to the academic world. Midway through 2023, I began studying at Boston University in their Graduate Certification program, picking up web development and starting business creating websites for restaurants, other shops and small businesses, and personal portfolios.</p>
 
+            <p>More recently, I have found myself leading a small game studio creating a first-person shooter game called "MURDEER." This has truly been both a dream come true and a labor of love for me!</p>
             <p>My passion for learning is equally matched by my enthusiasm for collaboration. Here's a glimpse into some of the languages and frameworks I'm currently using:</p>
 
             <ul>
@@ -124,9 +125,9 @@ const AnimatedText = ({ isPaused }) => {
               <li>Javascript</li>
               <li>HTML/CSS</li>
               <li>Python</li>
-              <li>R</li>
+              <li>ASP .NET Core</li>
               <li>React</li>
-              <li>Angular</li>
+              <li>Next.js</li>
               <li>Node.js</li>
             </ul>
 
