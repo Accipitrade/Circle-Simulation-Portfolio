@@ -589,7 +589,7 @@ function App() {
             <ContentContainer>
               <UpperLeft>
                 <h2>Cooking King! (Coming Soon)</h2>
-                <p>A Unity3D game time-mania game to complete recipes with your smartphone's gyroscope!</p>
+                <p>A Unity3D time-mania game where you complete recipes with your smartphone's gyroscope!</p>
               </UpperLeft>
 
               <UpperRight className='video'>
@@ -645,9 +645,8 @@ function App() {
               </UpperLeft>
 
               <Lower>
-                <p>Murdeer is a silly, high-octane, fast paced first-person shooter where you play as a Deer escaping an offensive RnD laboratory using a stolen PowerGun. Build a ridiculous weapon, buck into enemies, and meet a special friend along the way!</p>
-                <p>Our team comprised 4 people, myself as the Team Lead/Programmer, another programmer, a digital artist, and an audio technician. My role included ensuring we had a finished product for the end of the jam, as well as implementing algorithmic A* pathfinding, enemy AI, animations, and level design. Check out the <a href='https://itch.io/jam/bigmode-game-jam-2025/rate/3298526' target='_blank'>game jam submission</a>(we ranked #83 in fun out of 831 entries!) and the <a href='https://accipitrade.itch.io/murdeer' target='_blank'>full game jam release!</a></p>
-                <p>The team truly loved working on Murdeer, and following its positive reception, we plan on having a full launch on steam in the coming months!</p>
+                <p>Murdeer is a silly, high-octane, fast paced first-person shooter where you play as a Deer escaping an R&D laboratory using a stolen PowerGun. Build a ridiculous weapon, buck into enemies, and meet special forest friends along the way!</p>
+                <p>Our team comprised 4 people, myself as the team lead/programmer, another programmer, a digital artist, and an audio technician. My role included ensuring we had a finished product for the end of the jam, as well as implementing algorithmic A* pathfinding, enemy AI, animations, and level design. Check out the <a href='https://accipitrade.itch.io/murdeer' target='_blank'>itch page</a>where we have our "alpha" game jam version (we ranked #83 in fun out of 831 entries!) and our <a href='https://swiftstagstudios.org/' target='_blank'>studio website</a>!</p>
               </Lower>
             </ContentContainer>
           </div>
